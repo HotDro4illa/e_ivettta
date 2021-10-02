@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "aws-sdk": "^2.999.0",
     "chokidar": "^3.5.2",
     "express": "^4.17.1",
     "nodemon": "^2.0.13",

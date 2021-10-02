@@ -1,20 +1,20 @@
-var SocketIOFileUpload = require("socketio-file-upload");
 const express = require('express');
 const app = express();
 const http = require('http');
 const server = http.createServer(app);
 var fs = require('fs');
-const {
-    Server
-} = require("socket.io");
+const {Server} = require("socket.io");
 const io = new Server(server);
 const chokidar = require('chokidar');
+const { S3 } = require("aws-sdk");
+const s3 = new S3();
+
+var bucket_list = [];
 
 const PORT = process.env.PORT || 3000;
 
 const log = console.log;
 
-app.use(SocketIOFileUpload.router);
 
 app.use(express.static('public'));
 
@@ -23,29 +23,48 @@ app.get('/', (req, res) => {
 });
 
 
+async function* listAllKeys(opts) {
+  opts = { ...opts };
+  do {
+    const data = await s3.listObjectsV2(opts).promise();
+    opts.ContinuationToken = data.NextContinuationToken;
+    yield data;
+  } while (opts.ContinuationToken);
+}
 
+const opts = {
+  Bucket: "e-ivettta-files" /* required */,
+  // ContinuationToken: 'STRING_VALUE',
+  // Delimiter: 'STRING_VALUE',
+  // EncodingType: url,
+  // FetchOwner: true || false,
+  // MaxKeys: 'NUMBER_VALUE',
+  // Prefix: 'STRING_VALUE',
+  // RequestPayer: requester,
+  // StartAfter: 'STRING_VALUE'
+};
+
+async function main() {
+  // using for of await loop
+  for await (const data of listAllKeys(opts)) {
+    for (var i = 0; i < (data.Contents).length; i++){
+		bucket_list.push(data.Contents[i].Key);
+	}
+	
+  }
+
+}
+main();
 
 
 io.on('connection', (socket) => {
 
-	material = ((fs.readdirSync('./public/e_ivettta/')).sort()).reverse();
-	io.to(socket.id).emit('catalog_upd', material);
+	io.to(socket.id).emit('catalog_upd', bucket_list.sort().reverse());
 	
-	var uploader = new SocketIOFileUpload();
-	    uploader.dir = "./public/e_ivettta/";
-	    uploader.maxFileSize = 50000000;
-    uploader.listen(socket);
-	
-  uploader.on('progress', function(event) {
-    var perc = Math.round(((event.file.bytesLoaded / event.file.size) * 100)) + "%";
-	io.to(socket.id).emit('upload_perc', perc);
-	if ((event.file.bytesLoaded / event.file.size) == 1) {
-		io.to(socket.id).emit('upload_perc', "Файлы загружены");
-		return;
-	};
+
 });
 	
-});
+
 
 
 
