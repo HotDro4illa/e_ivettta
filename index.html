@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>Архив им.Елизаветы Ивановой</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<p class="sign">Публичный Архив Елизаветы Ивановой</p>
+<p style="font-weight:200; text-align:center; margin: 0; margin-bottom: 50px; letter-spacing: 3px;">Первый и наиболее полный...</p>
+<p class="category">Видео</p>
+<p style="margin-left: 50px;">В целях оптимизации была отключена предзагрузка видео</p>
+<div style="margin-left: 50px; display: flex;"><label>Загрузить своё видео или фото: <input type="file" id="siofu_input" accept=".jpg, .jpeg, .png, .mp4, .mkv, .webm" multiple/></label><p style="margin:0;" id="percent"></p></div>
+<div class="container" id="videos"></div>
+<p class="category">Фотографии</p>
+<div class="container" id="photos" style="margin-top: 100px;"></div>
+<div class="footer">
+
+<p class="footer_txt">powered by <p class="footer_txt" style=" margin-left: 125px; font-weight: 800; letter-spacing: 2px; color: red;">Hot_Stone LABS</p></p>
+</div>
+
+
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/client.js"></script>
+<script src="/siofu/client.js"></script>
+</html>

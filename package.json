@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "chokidar": "^3.5.2",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.13",
+    "socket.io": "^4.2.0",
+    "socketio-file-upload": "^0.7.3"
+  },
+  "name": "e-ivettta",
+  "version": "1.0.0",
+  "description": "jopa",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HotDro4illa/e_ivettta.git"
+  },
+  "author": "Dro4illa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HotDro4illa/e_ivettta/issues"
+  },
+  "homepage": "https://github.com/HotDro4illa/e_ivettta#readme"
+}
