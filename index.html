@@ -3,26 +3,83 @@
 <title>Архив им.Елизаветы Ивановой</title>
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
-<p id="stats" style="margin: 0; font-weight:600; text-align:center; padding-top: 10px; letter-spacing: 1px;"></p>
+
+<div id='stars'></div>
+<div id='stars2'></div>
+<div id='stars3'></div>
+
+<header class="header">
+
+
+</header>
+
+<div class="main_gal">
+
+<div class="left_gal">
+<div class="sign_block">
 <p class="sign">Публичный Архив Елизаветы Ивановой</p>
-<p style="font-weight:200; text-align:center; margin: 0; margin-bottom: 50px; letter-spacing: 3px;">v1.0 | Первый и наиболее полный...</p>
-
-<p class="category">Видео</p>
-<p style="margin-left: 50px;">В целях оптимизации была отключена предзагрузка видео</p>
-<div class="container" id="videos"></div>
-<p class="category">Фотографии</p>
-<div class="container" id="photos" style="margin-top: 100px;"></div>
-<div class="footer">
-
-<p class="footer_txt">powered by <p class="footer_txt" style=" margin-left: 125px; font-weight: 800; letter-spacing: 2px; color: red;">Hot_Stone LABS</p></p>
 </div>
+<p style="font-family: 'Comfortaa', cursive; color: #73717e; font-weight:200; text-align:center; margin: 0; margin-bottom: 50px; letter-spacing: 3px;">Первый и наиболее полный...</p>
+<p id="stats" style="margin-top: 10px;
+	font-family: 'Comfortaa', cursive;
+	font-weight: 200;
+	color: white;
+	font-family: 'Comfortaa', cursive; letter-spacing: 1px; text-align:center; "></p>
+
+</div>
+
+<div class="prlx_main">
+
+
+    <img class="parallax" src="main_par.jpg" style="max-height: 350px;"></img>
+
+</div>
+
+</div>
+
+<div class="p_block">
+<p class="category"><span class="category" style="font-weight: 700; background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+  background-size: 400% auto;
+  
+  color: #000;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; animation: gradient_inst 10s linear infinite;">Instagram: </span>видео и истории</p>
+</div>
+
+<div class="container" id="videos"></div>
+<div class="p_block">
+<p class="category" style="margin-top: 40px;"><span class="category" style="font-weight: 700; background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+  background-size: 400% auto;
+  
+  color: #000;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; animation: gradient_inst 10s linear infinite;">Instagram: </span>Фотографии</p>
+</div>
+<div class="container" id="photos" style=""></div>
+
+<div class="p_block">
+<p class="category" style="margin-top: 40px;"><span class="category" style="margin-top: 40px; text-align:center; font-weight: 700; background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+  background-size: 400% auto;
+  
+  color: #000;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; animation: gradient_inst 10s linear infinite;">TikTok: </span>клипы</p>
+</div>
+</div>
+<div class="container" id="tiktok" style=""></div>
 
 
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script src="/client.js"></script>
-<script src="/siofu/client.js"></script>
 </html>

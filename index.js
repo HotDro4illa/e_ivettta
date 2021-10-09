@@ -58,7 +58,9 @@ main();
 
 
 io.on('connection', (socket) => {
+	
 
+	
 	io.to(socket.id).emit('catalog_upd', bucket_list.sort().reverse());
 	
 
