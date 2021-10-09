@@ -77,12 +77,35 @@ socket.on("catalog_upd", (material) => {
         };
     }
 	
+	            for (var i = 0; i < 10; i++) {
+                if (videos.length > 0) {
+                    inner_vid = '<video src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + videos[0] + '" controls></video>';
+                    videos.splice(0, 1);
+                    document.querySelector("#videos").innerHTML += inner_vid;
+                } else {
+                    if (photos.length > 0) {
+
+                        inner_img = '<img class="image" src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + photos[0] + '"></img>';
+                        photos.splice(0, 1);
+                        document.querySelector("#photos").innerHTML += inner_img;
+                    } else {
+                        if (tiktok.length > 0) {
+
+                            inner_tik = '<video src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + tiktok[0] + '" controls></video>';
+                            tiktok.splice(0, 1);
+                            document.querySelector("#tiktok").innerHTML += inner_tik;
+                        }
+                    }
+                }
+
+
+            }
 	
 
     window.onscroll = function(ev) {
         if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 200) {
 
-            for (var i = 0; i < 7; i++) {
+            for (var i = 0; i < 1; i++) {
                 if (videos.length > 0) {
                     inner_vid = '<video src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + videos[0] + '" controls></video>';
                     videos.splice(0, 1);
