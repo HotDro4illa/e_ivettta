@@ -77,28 +77,28 @@ socket.on("catalog_upd", (material) => {
         };
     }
 	
+	
 
     window.onscroll = function(ev) {
         if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 200) {
 
             for (var i = 0; i < 7; i++) {
                 if (videos.length > 0) {
-                    inner_vid += '<video src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + videos[i] + '" controls></video>';
-
-                    videos.splice(i, 1);
-                    document.querySelector("#videos").innerHTML = inner_vid;
+                    inner_vid = '<video src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + videos[0] + '" controls></video>';
+                    videos.splice(0, 1);
+                    document.querySelector("#videos").innerHTML += inner_vid;
                 } else {
                     if (photos.length > 0) {
 
-                        inner_img += '<img class="image" src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + photos[i] + '"></img>';
-                        photos.splice(i, 1);
-                        document.querySelector("#photos").innerHTML = inner_img;
+                        inner_img = '<img class="image" src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + photos[0] + '"></img>';
+                        photos.splice(0, 1);
+                        document.querySelector("#photos").innerHTML += inner_img;
                     } else {
                         if (tiktok.length > 0) {
 
-                            inner_tik += '<video src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + tiktok[i] + '" controls></video>';
-                            tiktok.splice(i, 1);
-                            document.querySelector("#tiktok").innerHTML = inner_tik;
+                            inner_tik = '<video src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + tiktok[0] + '" controls></video>';
+                            tiktok.splice(0, 1);
+                            document.querySelector("#tiktok").innerHTML += inner_tik;
                         }
                     }
                 }
