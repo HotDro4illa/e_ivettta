@@ -48,7 +48,9 @@ async function main() {
   // using for of await loop
   for await (const data of listAllKeys(opts)) {
     for (var i = 0; i < (data.Contents).length; i++){
-		bucket_list.push(data.Contents[i].Key);
+		if ((data.Contents[i].Key).slice(0,1) != "t") {
+			bucket_list.push(data.Contents[i].Key);
+		}
 	}
 	
   }

@@ -55,87 +55,33 @@ socket.on("catalog_upd", (material) => {
 
 
 
-
     var inner_vid = "";
     var inner_img = "";
     var inner_tik = "";
 
-    var videos = []
-    var photos = []
-    var tiktok = []
+	    document.querySelector("#stats").innerHTML = "Сейчас архив насчитывает " + material.length + " видео и фото!";
 
     for (var i = 0; i < material.length; i++) {
         if ((material[i].slice(-1) == "4") && (material[i].slice(-5) != "k.mp4")) {
-            videos.push(material[i])
-			
+            inner_vid += '<video src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + material[i] + '" preload="none" poster="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/thumb_' + material[i] + '.jpg" controls></video>';
+			document.querySelector("#videos").innerHTML = inner_vid;
         }
         if ((material[i].slice(-1) == "g") && (material[i].slice(0,1) != "t")) {
-            photos.push(material[i])
+            inner_img += '<img class="image" src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + material[i] + '"></img>';
+          
+            document.querySelector("#photos").innerHTML = inner_img;
         };
         if (material[i].slice(-5) == "k.mp4") {
-            tiktok.push(material[i])
+            inner_tik += '<video src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + material[i] + '" preload="none" poster="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/thumb_' + material[i] + '.jpg" controls></video>';
+
+            document.querySelector("#tiktok").innerHTML = inner_tik;
         };
     }
 	
-	    document.querySelector("#stats").innerHTML = "Сейчас архив насчитывает " + (videos.length + photos.length + tiktok.length) + " видео и фото!";
-	
-	            for (var i = 0; i < 10; i++) {
-                if (videos.length > 0) {
-                    inner_vid = '<video src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + videos[0] + '" preload="none" poster="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/thumb_' + videos[0] + '.jpg" controls></video>';
-                    videos.splice(0, 1);
-                    document.querySelector("#videos").innerHTML += inner_vid;
-                } else {
-                    if (photos.length > 0) {
 
-                        inner_img = '<img class="image" src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + photos[0] + '"></img>';
-                        photos.splice(0, 1);
-                        document.querySelector("#photos").innerHTML += inner_img;
-                    } else {
-                        if (tiktok.length > 0) {
-
-                            inner_tik = '<video src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + tiktok[0] + '" preload="none" poster="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/thumb_' + videos[0] + '.jpg" controls></video>';
-                            tiktok.splice(0, 1);
-                            document.querySelector("#tiktok").innerHTML += inner_tik;
-                        }
-                    }
-                }
-
-
-            }
 	
 
-    window.onscroll = function(ev) {
-        if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 200) {
 
-            for (var i = 0; i < 9; i++) {
-                if (videos.length > 0) {
-                    inner_vid = '<video src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + videos[0] + '" preload="none" poster="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/thumb_' + videos[0] + '.jpg" controls></video>';
-                    videos.splice(0, 1);
-                    document.querySelector("#videos").innerHTML += inner_vid;
-                } else {
-                    if (photos.length > 0) {
-
-                        inner_img = '<img class="image" src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + photos[0] + '"></img>';
-                        photos.splice(0, 1);
-                        document.querySelector("#photos").innerHTML += inner_img;
-                    } else {
-                        if (tiktok.length > 0) {
-
-                            inner_tik = '<video src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + tiktok[0] + '" preload="none" poster="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/thumb_' + tiktok[0] + '.jpg" controls></video>';
-                            tiktok.splice(0, 1);
-                            document.querySelector("#tiktok").innerHTML += inner_tik;
-                        }
-                    }
-                }
-
-
-            }
-
-
-
-
-        }
-    };
 
 
 });
