@@ -53,7 +53,7 @@ $(document).ready(function() {
 
 socket.on("catalog_upd", (material) => {
 
-    document.querySelector("#stats").innerHTML = "Сейчас архив насчитывает " + material.length + " видео и фото!";
+
 
 
     var inner_vid = "";
@@ -69,7 +69,7 @@ socket.on("catalog_upd", (material) => {
             videos.push(material[i])
 			
         }
-        if (material[i].slice(-1) == "g") {
+        if ((material[i].slice(-1) == "g") && (material[i].slice(0,1) != "t")) {
             photos.push(material[i])
         };
         if (material[i].slice(-5) == "k.mp4") {
@@ -77,9 +77,11 @@ socket.on("catalog_upd", (material) => {
         };
     }
 	
+	    document.querySelector("#stats").innerHTML = "Сейчас архив насчитывает " + (videos.length + photos.length + tiktok.length) + " видео и фото!";
+	
 	            for (var i = 0; i < 10; i++) {
                 if (videos.length > 0) {
-                    inner_vid = '<video src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + videos[0] + '" controls></video>';
+                    inner_vid = '<video src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + videos[0] + '" preload="none" poster="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/thumb_' + videos[0] + '.jpg" controls></video>';
                     videos.splice(0, 1);
                     document.querySelector("#videos").innerHTML += inner_vid;
                 } else {
@@ -91,7 +93,7 @@ socket.on("catalog_upd", (material) => {
                     } else {
                         if (tiktok.length > 0) {
 
-                            inner_tik = '<video src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + tiktok[0] + '" controls></video>';
+                            inner_tik = '<video src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + tiktok[0] + '" preload="none" poster="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/thumb_' + videos[0] + '.jpg" controls></video>';
                             tiktok.splice(0, 1);
                             document.querySelector("#tiktok").innerHTML += inner_tik;
                         }
@@ -105,9 +107,9 @@ socket.on("catalog_upd", (material) => {
     window.onscroll = function(ev) {
         if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 200) {
 
-            for (var i = 0; i < 1; i++) {
+            for (var i = 0; i < 9; i++) {
                 if (videos.length > 0) {
-                    inner_vid = '<video src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + videos[0] + '" controls></video>';
+                    inner_vid = '<video src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + videos[0] + '" preload="none" poster="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/thumb_' + videos[0] + '.jpg" controls></video>';
                     videos.splice(0, 1);
                     document.querySelector("#videos").innerHTML += inner_vid;
                 } else {
@@ -119,7 +121,7 @@ socket.on("catalog_upd", (material) => {
                     } else {
                         if (tiktok.length > 0) {
 
-                            inner_tik = '<video src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + tiktok[0] + '" controls></video>';
+                            inner_tik = '<video src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + tiktok[0] + '" preload="none" poster="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/thumb_' + tiktok[0] + '.jpg" controls></video>';
                             tiktok.splice(0, 1);
                             document.querySelector("#tiktok").innerHTML += inner_tik;
                         }
