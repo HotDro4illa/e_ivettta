@@ -221,6 +221,7 @@ justify-content: center;
 
 
 .quick_txt1{
+	cursor: pointer;
 	font-family: 'Comfortaa', cursive;
   font-size: 20px;
   margin: 0;
@@ -245,6 +246,7 @@ justify-content: center;
 }
 
 .quick_txt2{
+	cursor: pointer;
 	font-family: 'Comfortaa', cursive;
   font-size: 20px;
   margin: 0;
@@ -263,6 +265,7 @@ justify-content: center;
 }
 
 .quick_txt3{
+	cursor: pointer;
 	font-family: 'Comfortaa', cursive;
   font-size: 20px;
   margin: 0;
