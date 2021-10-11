@@ -86,3 +86,21 @@ socket.on("catalog_upd", (material) => {
 
 
 });
+
+$("#qc_photo").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#photo_cont").offset().top
+    }, 1000); // Скорость прокрутки
+});
+
+$("#qc_video").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#video_cont").offset().top
+    }, 1000); // Скорость прокрутки
+});
+
+$("#qc_tiktok").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#tiktok_cont").offset().top
+    }, 1000); // Скорость прокрутки
+});

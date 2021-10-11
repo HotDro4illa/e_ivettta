@@ -59,6 +59,8 @@ async function main() {
 main();
 
 
+let timerId = setInterval(() => main(), 3600000);
+
 io.on('connection', (socket) => {
 	
 
