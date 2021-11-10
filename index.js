@@ -6,8 +6,7 @@ var fs = require('fs');
 const {Server} = require("socket.io");
 const io = new Server(server);
 const chokidar = require('chokidar');
-const { S3 } = require("aws-sdk");
-const s3 = new S3();
+var wget = require('node-wget-promise');
 
 var bucket_list = [];
 
@@ -23,38 +22,19 @@ app.get('/', (req, res) => {
 });
 
 
-async function* listAllKeys(opts) {
-  opts = { ...opts };
-  do {
-    const data = await s3.listObjectsV2(opts).promise();
-    opts.ContinuationToken = data.NextContinuationToken;
-    yield data;
-  } while (opts.ContinuationToken);
-}
 
-const opts = {
-  Bucket: "e-ivettta-files" /* required */,
-  // ContinuationToken: 'STRING_VALUE',
-  // Delimiter: 'STRING_VALUE',
-  // EncodingType: url,
-  // FetchOwner: true || false,
-  // MaxKeys: 'NUMBER_VALUE',
-  // Prefix: 'STRING_VALUE',
-  // RequestPayer: requester,
-  // StartAfter: 'STRING_VALUE'
-};
+var bucket_list = [];
+
 
 async function main() {
-  // using for of await loop
-  for await (const data of listAllKeys(opts)) {
-    for (var i = 0; i < (data.Contents).length; i++){
-		if ((data.Contents[i].Key).slice(0,1) != "t") {
-			bucket_list.push(data.Contents[i].Key);
-		}
-	}
 	
-  }
+	wget("https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/list.txt");
 
+	fs.readFile('list.txt', 'utf8', (err, data) => {
+			if(err) throw err;
+			bucket_list = data.split("\n")
+		});
+	
 }
 main();
 

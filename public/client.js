@@ -63,16 +63,16 @@ socket.on("catalog_upd", (material) => {
 
     for (var i = 0; i < material.length; i++) {
         if ((material[i].slice(-1) == "4") && (material[i].slice(-5) != "k.mp4")) {
-            inner_vid += '<video src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + material[i] + '" preload="none" poster="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/thumb_' + material[i] + '.jpg" controls></video>';
-
+            inner_vid += '<video src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + material[i] + '" preload="none" poster="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/thumb_' + material[i] + '.jpg" controls></video>';
+			
         }
         if ((material[i].slice(-1) == "g") && (material[i].slice(0,1) != "t")) {
-            inner_img += '<img class="image" src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + material[i] + '"></img>';
+            inner_img += '<img class="image" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + material[i] + '"></img>';
           
 
         };
         if (material[i].slice(-5) == "k.mp4") {
-            inner_tik += '<video src="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/' + material[i] + '" preload="none" poster="https://e-ivettta-files.s3.eu-central-1.amazonaws.com/thumb_' + material[i] + '.jpg" controls></video>';
+            inner_tik += '<video src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + material[i] + '" preload="none" poster="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/thumb_' + material[i] + '.jpg" controls></video>';
 
 
         };
