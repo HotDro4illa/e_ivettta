@@ -37,13 +37,15 @@ async function main() {
 	
 }
 
-
+main();
 
 let timerId = setInterval(() => main(), 3600000);
 
 io.on('connection', (socket) => {
 	
-	main();
+	if (bucket_list[0] == "") {
+		main();
+	}
 	
 	io.to(socket.id).emit('catalog_upd', bucket_list.sort().reverse());
 	
