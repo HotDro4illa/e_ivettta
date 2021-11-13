@@ -44,6 +44,11 @@ let timerId = setInterval(() => main(), 300000);
 
 io.on('connection', (socket) => {
 	
+		fs.readFile('list.txt', 'utf8', (err, data) => {
+			if(err) throw err;
+			bucket_list = data.split("\n").sort().reverse()
+		});
+	
 	io.to(socket.id).emit('catalog_upd', bucket_list);
 	
 
