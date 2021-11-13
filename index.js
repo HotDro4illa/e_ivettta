@@ -8,7 +8,6 @@ const io = new Server(server);
 const chokidar = require('chokidar');
 var wget = require('node-wget-promise');
 
-var bucket_list = [];
 
 const PORT = process.env.PORT || 3000;
 
@@ -23,31 +22,29 @@ app.get('/', (req, res) => {
 
 
 
+
 var bucket_list = [];
 
-
-async function main() {
+function main() {
 	
 	wget("https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/list.txt");
 
 	fs.readFile('list.txt', 'utf8', (err, data) => {
 			if(err) throw err;
-			bucket_list = data.split("\n")
+			bucket_list = data.split("\n").sort().reverse()
 		});
 	
 }
 
 main();
 
-let timerId = setInterval(() => main(), 3600000);
+let timerId = setInterval(() => main(), 300000);
+
+
 
 io.on('connection', (socket) => {
 	
-	if (bucket_list[0] == "") {
-		main();
-	}
-	
-	io.to(socket.id).emit('catalog_upd', bucket_list.sort().reverse());
+	io.to(socket.id).emit('catalog_upd', bucket_list);
 	
 
 });
