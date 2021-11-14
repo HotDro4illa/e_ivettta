@@ -44,7 +44,7 @@ function update() {
 			bucket_list = data.split("\n").sort().reverse()
 		});
 		
-		if (bucket_list.length != 1) {
+		if (bucket_list.length < 2) {
 			io.to(socket.id).emit('catalog_upd', bucket_list);
 			setTimeout(() => { clearInterval(timerId); log('stop'); }, 0);
 		}
