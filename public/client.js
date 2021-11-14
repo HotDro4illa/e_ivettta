@@ -59,12 +59,12 @@ socket.on("catalog_upd", (material) => {
     var inner_img = "";
     var inner_tik = "";
 
-	    document.querySelector("#stats").innerHTML = "Сейчас архив насчитывает " + material.length + " видео и фото!";
+	var vids = 0;
 
     for (var i = 0; i < material.length; i++) {
         if ((material[i].slice(-1) == "4") && (material[i].slice(-5) != "k.mp4")) {
             inner_vid += '<video src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + material[i] + '" preload="none" poster="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/thumb_' + material[i] + '.jpg" controls></video>';
-			
+			vids = vids + 1;
         }
         if ((material[i].slice(-1) == "g") && (material[i].slice(0,1) != "t")) {
             inner_img += '<img class="image" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + material[i] + '"></img>';
@@ -73,12 +73,12 @@ socket.on("catalog_upd", (material) => {
         };
         if (material[i].slice(-5) == "k.mp4") {
             inner_tik += '<video src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + material[i] + '" preload="none" poster="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/thumb_' + material[i] + '.jpg" controls></video>';
-
+			vids = vids + 1;
 
         };
     }
 	
-
+	    document.querySelector("#stats").innerHTML = "Сейчас архив насчитывает " + (material.length - vids) + " видео и фото!";
 	
 			document.querySelector("#videos").innerHTML = inner_vid;
 			document.querySelector("#photos").innerHTML = inner_img;
