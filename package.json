@@ -3,8 +3,10 @@
     "aws-sdk": "^2.999.0",
     "chokidar": "^3.5.2",
     "express": "^4.17.1",
+    "node-wget": "^0.4.3",
     "node-wget-promise": "^0.1.6",
     "nodemon": "^2.0.13",
+    "request": "^2.88.2",
     "socket.io": "^4.2.0",
     "socketio-file-upload": "^0.7.3"
   },
