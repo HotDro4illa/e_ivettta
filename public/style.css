@@ -294,3 +294,17 @@ justify-content: center;
   color: white;
 }
 
+@keyframes tiktok_logo{
+	0%, 100% {
+		text-shadow: -3px -3px 0 #0ff, 3px 3px 0 #f00;
+	}
+	25% {
+		text-shadow: 3px 3px 0 #0ff, -3px -3px 0 #f00;
+	}
+	50% {
+		text-shadow: 3px -3px 0 #0ff, 3px -3px 0 #f00;
+	}
+	75% {
+		text-shadow: -3px 3px 0 #0ff, -3px 3px 0 #f00;
+	}
+}
