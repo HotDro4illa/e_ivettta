@@ -52,6 +52,9 @@ function update() {
 
 let timerId = setInterval(() => update(), 2000);
 
+
+
+
 });
 	
 
