@@ -2,6 +2,7 @@ var socket = io();
 var log = console.log;
 
 
+
 $(document).ready(function() {
 
     var elementX = 0,
@@ -11,7 +12,8 @@ $(document).ready(function() {
         mouseX = 0,
         mouseY = 0;
 
-    $(document).mousemove(function(e) {
+    $(document).mousemove(function paral(e) {
+
 
         var position = $(".parallax").offset(),
             obj = $(".parallax");
@@ -45,6 +47,8 @@ $(document).ready(function() {
         // console.log(elementX+" "+elementY+" "+halfW+" "+halfH);
 
         $(".parallax").css("transform", "rotateX(" + mouseY * -10 + "deg) rotateY(" + mouseX * 10 + "deg)");
+
+		
     });
 
 });
@@ -87,23 +91,23 @@ socket.on("catalog_upd", (material) => {
 
 });
 
-$("#qc_photo").click(function() {
+function photo_scroll() {
     $('html, body').animate({
         scrollTop: $("#photo_cont").offset().top
     }, 1000); // Скорость прокрутки
-});
+};
 
-$("#qc_video").click(function() {
+function video_scroll() {
     $('html, body').animate({
         scrollTop: $("#video_cont").offset().top
     }, 1000); // Скорость прокрутки
-});
+};
 
-$("#qc_tiktok").click(function() {
+function tiktok_scroll() {
     $('html, body').animate({
         scrollTop: $("#tiktok_cont").offset().top
     }, 1000); // Скорость прокрутки
-});
+};
 
 
 
