@@ -19,8 +19,13 @@ body {
 	  display: flex;
 	justify-content: center;
 	flex-direction: column;
+	opacity: 50%;
+	transition: .3s;
 }
 
+.quick_blk_small:hover{
+	opacity: 100%;
+}
 
 .quick_txt1_small{
 	cursor: pointer;
