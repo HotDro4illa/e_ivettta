@@ -138,13 +138,36 @@ video{
 }
   
 .image{
-	margin: 30px;
+	margin: 0;
 	max-height: 400px;
 	transition: .1s ease;
 }
 
 .image:hover{
-	transform: scale(1.2);
+	
+}
+
+.img_block{
+	max-height: 400px; 
+	display: flex; 
+	flex-direction: column; 
+	border: 30px solid rgba(0,0,0,0); 
+	border-radius: 15px;
+	transition: 0.1s ease-in-out;
+}
+
+.img_block:hover{
+	border: 30px solid rgba(42,41,46,0.7); 
+	backdrop-filter: blur(2px);
+	cursor:pointer;
+}
+
+.img_date_str {
+	font-weight: 400;
+    letter-spacing: 0.5px;
+    margin: 4px;
+    text-align: center;
+    color: #9c9c9c;
 }
 
 .category{
