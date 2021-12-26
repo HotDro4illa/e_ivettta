@@ -56,6 +56,7 @@ $(document).ready(function() {
 var accs_list = []
 var arch_list_elem = ''
 var material = []
+var acc_name = ""
 
 document.getElementById("arch_sel").innerHTML = '<option selected value="e_ivettta">Загрузка...</option>';
 
@@ -97,12 +98,18 @@ function make_arch(material, acc_name) {
 
     for (var i = 0; i < material.length; i++) {
         if ((material[i].slice(-1) == "4") && (material[i].slice(-5) != "k.mp4")) {
-            inner_vid += '<video src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + "/" + material[i] + '" preload="none" poster="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + "/thumb_" + material[i] + '.jpg" controls></video>';
+			let year = material[i].split("_")[0].split("-")[0]
+			let month = material[i].split("_")[0].split("-")[1]
+			let day = material[i].split("_")[0].split("-")[2]
+			let hour = material[i].split("_")[1].split("-")[0]
+			let minute = material[i].split("_")[1].split("-")[1]
+			let second = material[i].split("_")[1].split("-")[2]
+            inner_vid += '<div class="img_block" id="' + i + '"><video src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + "/" + material[i] + '" preload="none" poster="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + "/thumb_" + material[i] + '.jpg" controls></video><p class="img_date_str">' + day + "." + month + "." + year + " " + hour + ":" + minute + ":" + second + '</p></div>';
 			vids = vids + 1;
         }
         if ((material[i].slice(-1) == "g") && (material[i].slice(0,1) != "t")) {
 			vids = vids + 1;
-			let ssil = "'" + material[i] + "'"
+			let ssil = "'" + acc_name + "/" + material[i] + "'"
 			let year = material[i].split("_")[0].split("-")[0]
 			let month = material[i].split("_")[0].split("-")[1]
 			let day = material[i].split("_")[0].split("-")[2]
