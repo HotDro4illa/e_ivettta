@@ -77,11 +77,15 @@ async function accs() {
 
 accs();
 
-
-async function get_material() {
-	$('html, body').animate({
+async function scroll_top() {
+		$('html, body').animate({
         scrollTop: $("#str_top").offset().top
     }, 100); // Скорость прокрутки
+};
+
+
+async function get_material() {
+	scroll_top();
 	var acc_name = document.getElementById("arch_sel").value
 		let response = await fetch('https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + "/list.txt");
 	let text = await response.text(); // прочитать тело ответа как текст
