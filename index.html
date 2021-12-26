@@ -24,6 +24,7 @@
 <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
 <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
 </head>
+<header class="header"></header>
 <body>
 
 <div style="position: fixed; z-index: -10;">
@@ -32,10 +33,7 @@
 <div id='stars3'></div>
 </div>
 
-<header class="header">
 
-
-</header>
 
 
 <div class="quick_blk_small">
@@ -46,12 +44,18 @@
 
 </div>
 
+<div class="arch_sel">
+	<select onchange="get_material();" id="arch_sel">
+	</select>
+  <p class="arch_p">список архивов</p>
+</div>
+
 
 <div class="main_gal">
 
 <div class="left_gal">
 <div class="sign_block">
-<p class="sign">Публичный Архив Елизаветы Ивановой</p>
+<p class="sign">Публичный МегаАрхив</p>
 </div>
 <p style="font-family: 'Comfortaa', cursive; color: #73717e; font-weight:200; text-align:center; margin: 0; margin-bottom: 50px; letter-spacing: 3px;">Первый и наиболее полный...</p>
 <p id="stats" style="margin-top: 10px;
@@ -75,45 +79,19 @@
 <div class="prlx_main">
 
 
-    <img class="parallax" src="main_par.jpg" style="max-height: 350px;"></img>
+    <img class="parallax" id="paral_photo" src="" style="height: 350px;"></img>
 
 </div>
 
 </div>
 
-<div class="p_block" id="video_cont">
-<p class="category"><span class="category" style="font-weight: 700; background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
-  background-size: 400% auto;
-  
-  color: #000;
-  background-clip: text;
-  text-fill-color: transparent;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; animation: gradient_inst 10s linear infinite;">Instagram: </span>видео и истории</p>
-</div>
-
-<div class="container" id="videos"><img style="max-height: 100px;" src="/loading.gif"></img></div>
-<div class="p_block" id="photo_cont">
-<p class="category" style="margin-top: 40px;"><span class="category" style="font-weight: 700; background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
-  background-size: 400% auto;
-  
-  color: #000;
-  background-clip: text;
-  text-fill-color: transparent;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; animation: gradient_inst 10s linear infinite;">Instagram: </span>Фотографии</p>
-</div>
-<div class="container" id="photos" style=""><img style="max-height: 100px;" src="/loading.gif"></div>
-
-<div class="p_block" id="tiktok_cont">
-<p class="category" style="margin-top: 40px;"><span class="category" style="margin-top: 40px; text-align:center; font-weight: 700; 	color: #fff;
-	font-family: sans-serif;
-	animation: tiktok_logo 0.6s ease infinite;">TikTok: </span>клипы</p>
-</div>
-</div>
-<div class="container" id="tiktok" style=""><img style="max-height: 100px;" src="/loading.gif"></div>
+<div id="media_block">
+<div class="container" id="loading_gif" style=""><img style="max-height: 100px;" src="/loading.gif"></div>
 
 
+
+
+</div>
 
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
