@@ -79,6 +79,9 @@ accs();
 
 
 async function get_material() {
+	$('html, body').animate({
+        scrollTop: $("#str_top").offset().top
+    }, 100); // Скорость прокрутки
 	var acc_name = document.getElementById("arch_sel").value
 		let response = await fetch('https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + "/list.txt");
 	let text = await response.text(); // прочитать тело ответа как текст
@@ -93,6 +96,7 @@ function make_arch(material, acc_name) {
     var inner_img = "";
     var inner_tik = "";
 	var vids = 0;
+
 	
 	document.getElementById("paral_photo").setAttribute("src", 'https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + '/profile_pic.jpg')
 
