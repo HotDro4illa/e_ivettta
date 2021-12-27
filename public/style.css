@@ -107,6 +107,9 @@ video{
 	max-height: 400px;
 }
 
+video:focus-visible{
+	outline: 0;
+}
 
 .sign {
 
@@ -161,12 +164,18 @@ video{
 	cursor:pointer;
 }
 
+.img_block:hover .img_date_str{
+	opacity: 1;
+}
+
 .img_date_str {
+	opacity: 0;
 	font-weight: 400;
     letter-spacing: 0.5px;
     margin: 4px;
     text-align: center;
     color: #9c9c9c;
+	transition: 0.1s ease-in-out;
 }
 
 .category{

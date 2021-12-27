@@ -58,6 +58,7 @@ var arch_list_elem = ''
 var material = []
 var acc_name = ""
 
+
 document.getElementById("arch_sel").innerHTML = '<option selected value="e_ivettta">Загрузка...</option>';
 
 async function accs() {
@@ -65,7 +66,12 @@ async function accs() {
 	let text = await response.text(); // прочитать тело ответа как текст
 	accs_list = text.split("\n")
 	for (var i = 0; i < accs_list.length; i++) {
-		if (accs_list[i] == "e_ivettta") {
+		if (accs_list[i] == document.cookie.split("=")[1]) {
+			arch_list_elem += '<option selected value="' + accs_list[i] + '">' + accs_list[i] + '</option>'
+			var selected = true
+			continue
+		}
+		if (accs_list[i] == "e_ivettta" && selected != true) {
 			   arch_list_elem += '<option selected value="' + accs_list[i] + '">' + accs_list[i] + '</option>'
 		}
 		else {
@@ -81,26 +87,38 @@ async function scroll_top() {
 		$('html, body').animate({
         scrollTop: $("#str_top").offset().top
     }, 100); // Скорость прокрутки
+
 };
 
 
-async function get_material() {
+async function get_material(cookie_acc) {
 	scroll_top();
-	var acc_name = document.getElementById("arch_sel").value
-		let response = await fetch('https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + "/list.txt");
+	if (cookie_acc != null) {
+		var acc_name = cookie_acc;
+	}
+	else {
+		var acc_name = document.getElementById("arch_sel").value
+	};
+	let response = await fetch('https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + "/list.txt");
 	let text = await response.text(); // прочитать тело ответа как текст
 	var material = text.split("\n")
 	make_arch(material.sort().reverse(), acc_name);
 };
 
-get_material();
+if (document.cookie.split("=")[1] != null) {
+	get_material(document.cookie.split("=")[1]);
+}
+else {
+	get_material();
+};
+
 
 function make_arch(material, acc_name) {
 	var inner_vid = "";
     var inner_img = "";
     var inner_tik = "";
 	var vids = 0;
-
+	document.cookie = "lastseen=" + acc_name;
 	
 	document.getElementById("paral_photo").setAttribute("src", 'https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + '/profile_pic.jpg')
 
