@@ -21,18 +21,6 @@ app.get('/', (req, res) => {
 
 
 
-
-var bucket_list = [];
-
-
-io.on('connection', (socket) => {
-
-});
-	
-
-
-
-
 server.listen(PORT, () => {
 	log(`listening on *:${ PORT }`);
 });

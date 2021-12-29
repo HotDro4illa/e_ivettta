@@ -57,7 +57,8 @@ var accs_list = []
 var arch_list_elem = ''
 var material = []
 var acc_name = ""
-
+var desc_list = [];
+var comms_list = [];
 
 document.getElementById("arch_sel").innerHTML = '<option selected value="e_ivettta">Загрузка...</option>';
 
@@ -100,7 +101,7 @@ async function get_material(cookie_acc) {
 		var acc_name = document.getElementById("arch_sel").value
 	};
 	let response = await fetch('https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + "/list.txt");
-	let text = await response.text(); // прочитать тело ответа как текст
+	let text = await response.text();
 	var material = text.split("\n")
 	make_arch(material.sort().reverse(), acc_name);
 };
@@ -117,6 +118,10 @@ function make_arch(material, acc_name) {
 	var inner_vid = "";
     var inner_img = "";
     var inner_tik = "";
+	desc_list = [];
+	comms_list = [];
+	
+
 	var vids = 0;
 	document.cookie = "lastseen=" + acc_name;
 	
@@ -124,25 +129,30 @@ function make_arch(material, acc_name) {
 
     for (var i = 0; i < material.length; i++) {
         if ((material[i].slice(-1) == "4") && (material[i].slice(-5) != "k.mp4")) {
+			acc_name_ssil = "'" + acc_name + "'"
+			filename_ssil = "'" + material[i] + "'"
 			let year = material[i].split("_")[0].split("-")[0]
 			let month = material[i].split("_")[0].split("-")[1]
 			let day = material[i].split("_")[0].split("-")[2]
 			let hour = material[i].split("_")[1].split("-")[0]
 			let minute = material[i].split("_")[1].split("-")[1]
 			let second = material[i].split("_")[1].split("-")[2]
-            inner_vid += '<div class="img_block" id="' + i + '"><video src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + "/" + material[i] + '" preload="none" poster="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + "/thumb_" + material[i] + '.jpg" controls></video><p class="img_date_str">' + day + "." + month + "." + year + " " + hour + ":" + minute + ":" + second + '</p></div>';
+			let time_str = "'" + day + "." + month + "." + year + " " + hour + ":" + minute + ":" + second + "'"
+            inner_vid += '<div class="img_block" id="' + i + '"><img onclick="get_desc(' + acc_name_ssil + "," + filename_ssil + "," + time_str + ')" class="arrows" src="arrows.svg" width="35px" height="auto"><img class="arrows_sd" src="arrows.svg" width="35px" height="auto"><video src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + "/" + material[i] + '" preload="none" poster="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + "/thumb_" + material[i] + '.jpg" controls></video><p class="img_date_str">' + day + "." + month + "." + year + " " + hour + ":" + minute + ":" + second + '</p></div>';
 			vids = vids + 1;
         }
         if ((material[i].slice(-1) == "g") && (material[i].slice(0,1) != "t")) {
 			vids = vids + 1;
-			let ssil = "'" + acc_name + "/" + material[i] + "'"
+			acc_name_ssil = "'" + acc_name + "'"
+			filename_ssil = "'" + material[i] + "'"
 			let year = material[i].split("_")[0].split("-")[0]
 			let month = material[i].split("_")[0].split("-")[1]
 			let day = material[i].split("_")[0].split("-")[2]
 			let hour = material[i].split("_")[1].split("-")[0]
 			let minute = material[i].split("_")[1].split("-")[1]
 			let second = material[i].split("_")[1].split("-")[2]
-            inner_img += '<div class="img_block" onclick="show_border(' + ssil + ')" id="' + i + '"><img class="image" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + "/" + material[i] + '"></img><p class="img_date_str">' + day + "." + month + "." + year + " " + hour + ":" + minute + ":" + second + '</p></div>';
+			let time_str = "'" + day + "." + month + "." + year + " " + hour + ":" + minute + ":" + second + "'"
+            inner_img += '<div class="img_block" id="' + i + '"><img onclick="get_desc(' + acc_name_ssil + "," + filename_ssil + "," + time_str + ')" class="arrows" src="arrows.svg" width="35px" height="auto"><img class="arrows_sd" src="arrows.svg" width="35px" height="auto"><img class="image" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + "/" + material[i] + '"></img><p class="img_date_str">' + day + "." + month + "." + year + " " + hour + ":" + minute + ":" + second + '</p></div>';
           
 
         };
@@ -151,6 +161,17 @@ function make_arch(material, acc_name) {
 			vids = vids + 1;
 
         };
+		
+        if (material[i].split(".")[1] == "txt" && material[i].split(".")[0] != "list") {
+			desc_list.push(material[i]);
+
+        };	
+
+		if (material[i].split(".")[1] == "json") {
+			comms_list.push(material[i]);
+
+        };
+		
     }
 	
 	    document.querySelector("#stats").innerHTML = "Сейчас архив насчитывает " + (vids) + " видео и фото!";
@@ -205,7 +226,59 @@ function tiktok_scroll() {
     }, 1000); // Скорость прокрутки
 };
 
-function show_border(ssil) {
-	dwnl_str = "https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/" + ssil
-	window.open(dwnl_str);
+async function get_desc(acc, file, time) {
+	if (desc_list.includes(file.split(".")[0].split("_")[0] + "_" + file.split(".")[0].split("_")[1] + "_UTC.txt") == true) {
+			let response = await fetch('https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc + "/" + file.split(".")[0].split("_")[0] + "_" + file.split(".")[0].split("_")[1] + "_UTC.txt");
+			let text = await response.text();
+			get_comms(acc, file, text, time);
+	}
+	else {
+		get_comms(acc, file, "Описание отсутствует", time);
+	}
 };
+
+
+async function get_comms(acc, file, text, time) {
+		if (comms_list.includes(file.split(".")[0].split("_")[0] + "_" + file.split(".")[0].split("_")[1] + "_UTC_comments.json") == true) {
+			let response = await fetch('https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc + "/" + file.split(".")[0].split("_")[0] + "_" + file.split(".")[0].split("_")[1] + "_UTC_comments.json");
+			let comms = await response.json();
+			show_border(acc, file, text, time, comms);
+			
+	}
+	else {
+		show_border(acc, file, text, time, "Комментарии отсутствуют");
+	}
+};
+
+
+function show_border(acc, file, caption, time, comms) {
+	var comment_str = "";
+	if (comms != "Комментарии отсутствуют") {
+			for (let i = 0; i < comms.length; i++) {
+				comment_str += '<div class="comment"><span><span style="font-weight:bold; margin-right: 10px;">' + comms[i]["owner"]["username"] + '</span>' + comms[i]["text"] + '</span></div>'
+				for (let j = 0; j < comms[i]["answers"].length; j++) {
+					comment_str += '<div style="margin-left: 30px;" class="comment"><span><span style="font-weight:bold; margin-right: 10px;">' + comms[i]["answers"][j]["owner"]["username"] + '</span>' + comms[i]["answers"][j]["text"] + '</span></div>'
+				};
+			};
+	}
+	else {
+		comment_str = '<div class="comment"><span>Комментарии отсутствуют</span></div>'
+	}
+	
+	if ((file.slice(-1) == "4") && (file.slice(-5) != "k.mp4")) {
+	document.body.innerHTML += '<div id="overlay" class="overlay"><img onclick="remove_ol()" style="z-index: 10;width: 40px;margin: 20px;" class="arrows" src="cross.svg"></img><div id="overlay" style="display: flex;align-items: center;justify-content: center;" class="overlay"><video style="max-height: 80%;max-width: 50%;" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc + "/" + file + '" preload="none" poster="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc + "/thumb_" + file + '.jpg" controls></video><div style="display: flex;flex-direction: column;height: 13rem;max-width: 40%;justify-content: center;"><div class="desc_blk"><div style="margin-bottom: 10px;"><span style="font-weight: 100;"><span style="font-weight: bold;margin-right: 10px;">' + acc + '</span>' + time + '</span></div><span style="overflow: auto;">' + caption.split("\n").join("<br>") + '</span></div><div class="desc_blk"><div style="margin-bottom: 10px;"><span style="font-weight:bold;">Комментарии:</span></div><div style="overflow: auto;display: flex; flex-direction: column;">' + comment_str + '</div></div></div></div>'
+	}
+	else {
+	document.body.innerHTML += '<div id="overlay" class="overlay"><img onclick="remove_ol()" style="z-index: 10;width: 40px;margin: 20px;" class="arrows" src="cross.svg"></img><div id="overlay" style="display: flex;align-items: center;justify-content: center;" class="overlay"><img class="image" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc + '/' + file + '" style="max-height: 80%;max-width: 50%;"></img><div style="display: flex;flex-direction: column;height: 13rem;max-width: 40%;justify-content: center;"><div class="desc_blk"><div style="margin-bottom: 10px;"><span style="font-weight: 100;"><span style="font-weight: bold;margin-right: 10px;">' + acc + '</span>' + time + '</span></div><span style="overflow: auto;">' + caption.split("\n").join("<br>") + '</span></div><div class="desc_blk"><div style="margin-bottom: 10px;"><span style="font-weight:bold;">Комментарии:</span></div><div style="overflow: auto;display: flex; flex-direction: column;">' + comment_str + '</div></div></div></div>'
+	};
+};
+
+function remove_ol() {
+	document.getElementById("overlay").remove();
+};
+
+document.addEventListener('keydown', function(event) {
+  if (event.code == 'Escape' && document.getElementById("overlay") != null) {
+    document.getElementById("overlay").remove();
+  }
+});
