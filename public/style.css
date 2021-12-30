@@ -499,6 +499,10 @@ select:hover {
 	opacity: 80%;
 }
 
+.img_block:hover .arrows:hover {
+	opacity: 1;
+}
+
 .img_block:hover .arrows_sd {
 	opacity: 50%;
 }
