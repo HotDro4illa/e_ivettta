@@ -495,9 +495,18 @@ select:hover {
   letter-spacing: 0px; 
 }
 
+.img_block:hover .arrows {
+	opacity: 80%;
+}
+
+.img_block:hover .arrows_sd {
+	opacity: 50%;
+}
+
 .arrows {
 	cursor:pointer;
-	opacity: 80%;
+	
+	opacity: 0;
 	margin: 10px;
 	right: 0;
 	position: fixed;
@@ -515,7 +524,8 @@ select:hover {
 }
 
 .arrows_sd {
-	opacity: 50%;
+
+	opacity: 0;
 	z-index: 0;
 	margin: 10px;
 	right: 0;
