@@ -584,5 +584,15 @@ width: 10px;
 }
 
 .star_bg {
+}
+
+@media (orientation: portrait) {
+	.star_bg {
+		display: none;
+	}
+	.overlay {
+		backdrop-filter: blur(0px);
+		background: rgba(0,0,0,0.7);
+}
 
 }

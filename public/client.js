@@ -1,9 +1,12 @@
 var socket = io();
 var log = console.log;
 
+if (window.innerHeight < window.innerWidth) {
+	parallax_img();
+};
 
 
-$(document).ready(function() {
+function parallax_img() {
 
     var elementX = 0,
         elementY = 0,
@@ -51,7 +54,7 @@ $(document).ready(function() {
 		
     });
 
-});
+};
 
 var accs_list = []
 var arch_list_elem = ''
