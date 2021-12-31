@@ -126,7 +126,7 @@ function make_arch(material, acc_name) {
 	
 
 	var vids = 0;
-	document.cookie = "lastseen=" + acc_name;
+	document.cookie = "lastseen=" + acc_name + "; expires=Fri, 31 Dec 9999 23:59:59 GMT";
 	
 	document.getElementById("paral_photo").setAttribute("src", 'https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + '/profile_pic.jpg')
 
