@@ -592,9 +592,14 @@ width: 10px;
 	}
 	.overlay {
 		background: rgba(0,0,0,0.7);
+		backdrop-filter: none !important;
 	}
-	* { 
-		backdrop-filter: none;
-	}	
-
+	.img_block {
+		backdrop-filter: invert(0) !important;
+	}
+	
+	.arrows_sd {
+		filter: none !important;
+	}
+	
 }
