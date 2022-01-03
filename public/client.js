@@ -63,7 +63,7 @@ var acc_name = ""
 var desc_list = [];
 var comms_list = [];
 
-document.getElementById("arch_sel").innerHTML = '<option selected value="e_ivettta">Загрузка...</option>';
+document.getElementById("arch_sel").insertAdjacentHTML('beforeend', '<option selected value="e_ivettta">Загрузка...</option>');
 
 async function accs() {
 	let response = await fetch('https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/accs.txt');
@@ -83,6 +83,7 @@ async function accs() {
 		};
 	};
 	document.getElementById("arch_sel").innerHTML = arch_list_elem;
+	
 };
 
 accs();
@@ -155,7 +156,7 @@ function make_arch(material, acc_name) {
 			let minute = material[i].split("_")[1].split("-")[1]
 			let second = material[i].split("_")[1].split("-")[2]
 			let time_str = "'" + day + "." + month + "." + year + " " + hour + ":" + minute + ":" + second + "'"
-            inner_img += '<div class="img_block" id="' + i + '"><img onclick="get_desc(' + acc_name_ssil + "," + filename_ssil + "," + time_str + ')" class="arrows" src="arrows.svg" width="35px" height="auto"><img class="arrows_sd" src="arrows.svg" width="35px" height="auto"><img class="image" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + "/" + material[i] + '"></img><p class="img_date_str">' + day + "." + month + "." + year + " " + hour + ":" + minute + ":" + second + '</p></div>';
+            inner_img += '<div onclick="get_desc(' + acc_name_ssil + "," + filename_ssil + "," + time_str + ')" class="img_block" id="' + i + '"><img class="arrows" src="arrows.svg" width="35px" height="auto"><img class="arrows_sd" src="arrows.svg" width="35px" height="auto"><img class="image" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + "/" + material[i] + '"></img><p class="img_date_str">' + day + "." + month + "." + year + " " + hour + ":" + minute + ":" + second + '</p></div>';
           
 
         };
@@ -182,16 +183,16 @@ function make_arch(material, acc_name) {
 			document.getElementById("media_block").innerHTML = "";
 			
 			if (inner_vid != "") {
-				document.getElementById("media_block").innerHTML += '<div class="p_block" id="video_cont"><p class="category"><span class="category" style="font-weight: 700; background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d); background-size: 400% auto;color: #000;background-clip: text;text-fill-color: transparent;-webkit-background-clip: text;-webkit-text-fill-color: transparent; animation: gradient_inst 10s linear infinite;">Instagram: </span>видео и истории</p></div><div class="container" id="video" style=""></div>';
-				document.getElementById("video").innerHTML = inner_vid;
+				document.getElementById("media_block").insertAdjacentHTML('beforeend', '<div class="p_block" id="video_cont"><p class="category"><span class="category" style="font-weight: 700; background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d); background-size: 400% auto;color: #000;background-clip: text;text-fill-color: transparent;-webkit-background-clip: text;-webkit-text-fill-color: transparent; animation: gradient_inst 10s linear infinite;">Instagram: </span>видео и истории</p></div><div class="container" id="video" style=""></div>');
+				document.getElementById("video").insertAdjacentHTML('beforeend', inner_vid);
 			};
 			if (inner_img != "") {
-				document.getElementById("media_block").innerHTML += '<div class="p_block" id="photo_cont"><p class="category" style="margin-top: 40px;"><span class="category" style="font-weight: 700; background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);  background-size: 400% auto;    color: #000;  background-clip: text;  text-fill-color: transparent;  -webkit-background-clip: text;  -webkit-text-fill-color: transparent; animation: gradient_inst 10s linear infinite;">Instagram: </span>Фотографии</p></div><div class="container" id="photo" style=""></div>';
-				document.getElementById("photo").innerHTML = inner_img;
+				document.getElementById("media_block").insertAdjacentHTML('beforeend', '<div class="p_block" id="photo_cont"><p class="category" style="margin-top: 40px;"><span class="category" style="font-weight: 700; background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);  background-size: 400% auto;    color: #000;  background-clip: text;  text-fill-color: transparent;  -webkit-background-clip: text;  -webkit-text-fill-color: transparent; animation: gradient_inst 10s linear infinite;">Instagram: </span>Фотографии</p></div><div class="container" id="photo" style=""></div>');
+				document.getElementById("photo").insertAdjacentHTML('beforeend', inner_img);
 			};
 			if (inner_tik != "") {
-				document.getElementById("media_block").innerHTML += '<div class="p_block" id="tiktok_cont"><p class="category" style="margin-top: 40px;"><span class="category" style="margin-top: 40px; text-align:center; font-weight: 700; 	color: #fff;	font-family: sans-serif;	animation: tiktok_logo 0.6s ease infinite;">TikTok: </span>клипы</p></div><div class="container" id="tiktok" style=""></div>';
-				document.getElementById("tiktok").innerHTML = inner_tik;
+				document.getElementById("media_block").insertAdjacentHTML('beforeend', '<div class="p_block" id="tiktok_cont"><p class="category" style="margin-top: 40px;"><span class="category" style="margin-top: 40px; text-align:center; font-weight: 700; 	color: #fff;	font-family: sans-serif;	animation: tiktok_logo 0.6s ease infinite;">TikTok: </span>клипы</p></div><div class="container" id="tiktok" style=""></div>');
+				document.getElementById("tiktok").insertAdjacentHTML('beforeend', inner_tik);
 			};
 			
 			
@@ -269,10 +270,10 @@ function show_border(acc, file, caption, time, comms) {
 	}
 	
 	if ((file.slice(-1) == "4") && (file.slice(-5) != "k.mp4")) {
-	document.body.innerHTML += '<div id="overlay" class="overlay"><img onclick="remove_ol()" style="opacity: 1;z-index: 10;width: 40px;margin: 20px;" class="arrows" src="cross.svg"></img><div id="overlay" style="display: flex;align-items: center;justify-content: center;" class="overlay"><video style="max-height: 80%;max-width: 50%;" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc + "/" + file + '" preload="none" poster="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc + "/thumb_" + file + '.jpg" controls></video><div style="display: flex;flex-direction: column;height: 13rem;max-width: 40%;justify-content: center;"><div class="desc_blk"><div style="margin-bottom: 10px;"><span style="font-weight: 100;"><span style="font-weight: bold;margin-right: 10px;">' + acc + '</span>' + time + '</span></div><span style="overflow: auto;">' + caption.split("\n").join("<br>") + '</span></div><div class="desc_blk"><div style="margin-bottom: 10px;"><span style="font-weight:bold;">Комментарии:</span></div><div style="overflow: auto;display: flex; flex-direction: column;">' + comment_str + '</div></div></div></div>'
+	document.body.insertAdjacentHTML('beforeend', '<div id="overlay" class="overlay"><img onclick="remove_ol()" style="opacity: 1;z-index: 10;width: 40px;margin: 20px;" class="arrows" src="cross.svg"></img><div id="overlay" style="height: 100%;width: 100%;display: flex;align-items: center;justify-content: center;"><video style="max-height: 80%;max-width: 50%;" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc + "/" + file + '" preload="none" poster="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc + "/thumb_" + file + '.jpg" controls></video><div style="height: 100%; max-width: 40%;display: flex;flex-direction: column;justify-content: center;"><div class="desc_blk"><div style="margin-bottom: 10px;"><span style="font-weight: 100;"><span style="font-weight: bold;margin-right: 10px;">' + acc + '</span>' + time + '</span></div><span style="overflow: auto;">' + caption.split("\n").join("<br>") + '</span></div><div class="desc_blk"><div style="margin-bottom: 10px;"><span style="font-weight:bold;">Комментарии:</span></div><div style="overflow: auto;display: flex; flex-direction: column;">' + comment_str + '</div></div></div></div>');
 	}
 	else {
-	document.body.innerHTML += '<div id="overlay" class="overlay"><img onclick="remove_ol()" style="opacity: 1;z-index: 10;width: 40px;margin: 20px;" class="arrows" src="cross.svg"></img><div id="overlay" style="display: flex;align-items: center;justify-content: center;" class="overlay"><img class="image" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc + '/' + file + '" style="max-height: 80%;max-width: 50%;"></img><div style="display: flex;flex-direction: column;height: 13rem;max-width: 40%;justify-content: center;"><div class="desc_blk"><div style="margin-bottom: 10px;"><span style="font-weight: 100;"><span style="font-weight: bold;margin-right: 10px;">' + acc + '</span>' + time + '</span></div><span style="overflow: auto;">' + caption.split("\n").join("<br>") + '</span></div><div class="desc_blk"><div style="margin-bottom: 10px;"><span style="font-weight:bold;">Комментарии:</span></div><div style="overflow: auto;display: flex; flex-direction: column;">' + comment_str + '</div></div></div></div>'
+	document.body.insertAdjacentHTML('beforeend', '<div id="overlay" class="overlay"><img onclick="remove_ol()" style="opacity: 1;z-index: 10;width: 40px;margin: 20px;" class="arrows" src="cross.svg"></img><div id="overlay" style="height: 100%;width: 100%;display: flex;align-items: center;justify-content: center;"><img class="image" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc + '/' + file + '" style="max-height: 80%;max-width: 50%;"></img><div style="height: 100%;max-width: 40%;display: flex;flex-direction: column;justify-content: center;"><div class="desc_blk"><div style="margin-bottom: 10px;"><span style="font-weight: 100;"><span style="font-weight: bold;margin-right: 10px;">' + acc + '</span>' + time + '</span></div><span style="overflow: auto;">' + caption.split("\n").join("<br>") + '</span></div><div class="desc_blk"><div style="margin-bottom: 10px;"><span style="font-weight:bold;">Комментарии:</span></div><div style="overflow: auto;display: flex; flex-direction: column;">' + comment_str + '</div></div></div></div>');
 	};
 };
 
