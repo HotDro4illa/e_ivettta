@@ -596,7 +596,7 @@ width: 10px;
 		display: none;
 	}
 	.overlay {
-		background: rgba(0,0,0,0.7);
+		background: rgba(0,0,0,0.7) !important;
 		backdrop-filter: none !important;
 	}
 	.img_block {
