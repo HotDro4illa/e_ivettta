@@ -259,10 +259,10 @@ async function get_comms(acc, file, text, time) {
 
 function show_border(acc, file, caption, time, comms) {
 	var comment_str = "";
-	if (comms != "Комментарии отсутствуют") {
-			for (let i = 0; i < comms.length; i++) {
+	if (comms != "Комментарии отсутствуют" && comms.length > 0) {
+			for (let i = comms.length - 1; i >= 0; i--) {
 				comment_str += '<div class="comment"><span><span style="font-weight:bold; margin-right: 10px;">' + comms[i]["owner"]["username"] + '</span>' + comms[i]["text"] + '</span></div>'
-				for (let j = 0; j < comms[i]["answers"].length; j++) {
+				for (let j = comms[i]["answers"].length - 1; j >= 0; j--) {
 					comment_str += '<div style="margin-left: 30px;" class="comment"><span><span style="font-weight:bold; margin-right: 10px;">' + comms[i]["answers"][j]["owner"]["username"] + '</span>' + comms[i]["answers"][j]["text"] + '</span></div>'
 				};
 			};
@@ -278,25 +278,23 @@ function show_border(acc, file, caption, time, comms) {
 	document.body.insertAdjacentHTML('beforeend', '<div id="overlay" class="overlay"><img onclick="remove_ol()" style="opacity: 1;z-index: 10;width: 40px;margin: 20px;" class="arrows" src="cross.svg"></img><div id="sm_overlay" style="height: 100%;width: 100%;display: flex;align-items: center;justify-content: center;"><img class="image" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc + '/' + file + '" style="max-height: 80%;max-width: 50%;"></img><div id="sm_overlay" style="height: 100%;max-width: 40%;display: flex;flex-direction: column;justify-content: center;"><div class="desc_blk"><div style="margin-bottom: 10px;"><span style="font-weight: 100;"><span style="font-weight: bold;margin-right: 10px;">' + acc + '</span>' + time + '</span></div><span style="overflow: auto;">' + caption.split("\n").join("<br>") + '</span></div><div class="desc_blk"><div style="margin-bottom: 10px;"><span style="font-weight:bold;">Комментарии:</span></div><div style="overflow: auto;display: flex; flex-direction: column;">' + comment_str + '</div></div></div></div>');
 	};
 	
-	listen();
+
 };
 
 function remove_ol() {
 	document.getElementById("overlay").remove();
 };
 
-function listen() {
-	$('#overlay').click(function(event){
-
-	event.stopPropagation();
-	if (event.target.id == "sm_overlay") {
-		remove_ol();
-	};
-});
-};
 
 document.addEventListener('keydown', function(event) {
   if (event.code == 'Escape' && document.getElementById("overlay") != null) {
     document.getElementById("overlay").remove();
   }
+});
+
+document.addEventListener('click', function(event) {
+	event.stopPropagation();
+	if (event.target.id == "sm_overlay") {
+		remove_ol();
+	};
 });
