@@ -199,7 +199,9 @@ function make_arch(material, acc_name) {
 			
 };
 
+function listen() {	
 
+};
 
 
 
@@ -270,15 +272,27 @@ function show_border(acc, file, caption, time, comms) {
 	}
 	
 	if ((file.slice(-1) == "4") && (file.slice(-5) != "k.mp4")) {
-	document.body.insertAdjacentHTML('beforeend', '<div id="overlay" class="overlay"><img onclick="remove_ol()" style="opacity: 1;z-index: 10;width: 40px;margin: 20px;" class="arrows" src="cross.svg"></img><div id="overlay" style="height: 100%;width: 100%;display: flex;align-items: center;justify-content: center;"><video style="max-height: 80%;max-width: 50%;" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc + "/" + file + '" preload="none" poster="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc + "/thumb_" + file + '.jpg" controls></video><div style="height: 100%; max-width: 40%;display: flex;flex-direction: column;justify-content: center;"><div class="desc_blk"><div style="margin-bottom: 10px;"><span style="font-weight: 100;"><span style="font-weight: bold;margin-right: 10px;">' + acc + '</span>' + time + '</span></div><span style="overflow: auto;">' + caption.split("\n").join("<br>") + '</span></div><div class="desc_blk"><div style="margin-bottom: 10px;"><span style="font-weight:bold;">Комментарии:</span></div><div style="overflow: auto;display: flex; flex-direction: column;">' + comment_str + '</div></div></div></div>');
+	document.body.insertAdjacentHTML('beforeend', '<div id="overlay" class="overlay"><img onclick="remove_ol()" style="opacity: 1;z-index: 10;width: 40px;margin: 20px;" class="arrows" src="cross.svg"></img><div id="sm_overlay" style="height: 100%;width: 100%;display: flex;align-items: center;justify-content: center;"><video style="max-height: 80%;max-width: 50%;" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc + "/" + file + '" preload="none" poster="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc + "/thumb_" + file + '.jpg" controls></video><div id="sm_overlay" style="height: 100%; max-width: 40%;display: flex;flex-direction: column;justify-content: center;"><div class="desc_blk"><div style="margin-bottom: 10px;"><span style="font-weight: 100;"><span style="font-weight: bold;margin-right: 10px;">' + acc + '</span>' + time + '</span></div><span style="overflow: auto;">' + caption.split("\n").join("<br>") + '</span></div><div class="desc_blk"><div style="margin-bottom: 10px;"><span style="font-weight:bold;">Комментарии:</span></div><div style="overflow: auto;display: flex; flex-direction: column;">' + comment_str + '</div></div></div></div>');
 	}
 	else {
-	document.body.insertAdjacentHTML('beforeend', '<div id="overlay" class="overlay"><img onclick="remove_ol()" style="opacity: 1;z-index: 10;width: 40px;margin: 20px;" class="arrows" src="cross.svg"></img><div id="overlay" style="height: 100%;width: 100%;display: flex;align-items: center;justify-content: center;"><img class="image" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc + '/' + file + '" style="max-height: 80%;max-width: 50%;"></img><div style="height: 100%;max-width: 40%;display: flex;flex-direction: column;justify-content: center;"><div class="desc_blk"><div style="margin-bottom: 10px;"><span style="font-weight: 100;"><span style="font-weight: bold;margin-right: 10px;">' + acc + '</span>' + time + '</span></div><span style="overflow: auto;">' + caption.split("\n").join("<br>") + '</span></div><div class="desc_blk"><div style="margin-bottom: 10px;"><span style="font-weight:bold;">Комментарии:</span></div><div style="overflow: auto;display: flex; flex-direction: column;">' + comment_str + '</div></div></div></div>');
+	document.body.insertAdjacentHTML('beforeend', '<div id="overlay" class="overlay"><img onclick="remove_ol()" style="opacity: 1;z-index: 10;width: 40px;margin: 20px;" class="arrows" src="cross.svg"></img><div id="sm_overlay" style="height: 100%;width: 100%;display: flex;align-items: center;justify-content: center;"><img class="image" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc + '/' + file + '" style="max-height: 80%;max-width: 50%;"></img><div id="sm_overlay" style="height: 100%;max-width: 40%;display: flex;flex-direction: column;justify-content: center;"><div class="desc_blk"><div style="margin-bottom: 10px;"><span style="font-weight: 100;"><span style="font-weight: bold;margin-right: 10px;">' + acc + '</span>' + time + '</span></div><span style="overflow: auto;">' + caption.split("\n").join("<br>") + '</span></div><div class="desc_blk"><div style="margin-bottom: 10px;"><span style="font-weight:bold;">Комментарии:</span></div><div style="overflow: auto;display: flex; flex-direction: column;">' + comment_str + '</div></div></div></div>');
 	};
+	
+	listen();
 };
 
 function remove_ol() {
 	document.getElementById("overlay").remove();
+};
+
+function listen() {
+	$('#overlay').click(function(event){
+
+	event.stopPropagation();
+	if (event.target.id == "sm_overlay") {
+		remove_ol();
+	};
+});
 };
 
 document.addEventListener('keydown', function(event) {
