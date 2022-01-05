@@ -36,7 +36,6 @@ function parallax_img() {
         if (mouseY < -1.50) {
             mouseY = -1.50;
         }
-        // console.log(elementX+" "+elementY+" "+halfW+" "+halfH);
         $(".parallax").css("transform", "rotateX(" + mouseY * -10 + "deg) rotateY(" + mouseX * 10 + "deg)");
     });
 };
@@ -123,7 +122,7 @@ function make_arch(material, acc_name) {
             let minute = material[i].split("_")[1].split("-")[1]
             let second = material[i].split("_")[1].split("-")[2]
             let time_str = "'" + day + "." + month + "." + year + " " + hour + ":" + minute + ":" + second + "'"
-            inner_img += '<div onclick="get_desc(' + acc_name_ssil + "," + filename_ssil + "," + time_str + ')" class="img_block" id="' + i + '"><img class="arrows" src="arrows.svg" width="35px" height="auto"><img class="arrows_sd" src="arrows.svg" width="35px" height="auto"><img class="image" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + "/" + material[i] + '"></img><p class="img_date_str">' + day + "." + month + "." + year + " " + hour + ":" + minute + ":" + second + '</p></div>';
+            inner_img += '<div onclick="get_desc(' + acc_name_ssil + "," + filename_ssil + "," + time_str + ')" class="img_block" id="' + i + '"><img class="arrows" src="arrows.svg" width="35px" height="auto"><img class="arrows_sd" src="arrows.svg" width="35px" height="auto"><img class="image" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + "/thumb_" + material[i] + '"></img><p class="img_date_str">' + day + "." + month + "." + year + " " + hour + ":" + minute + ":" + second + '</p></div>';
         };
         if (material[i].slice(-5) == "k.mp4") {
             inner_tik += '<video style="margin: 30px;" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + "/" + material[i] + '" preload="none" poster="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + "/thumb_" + material[i] + '.jpg" controls></video>';
