@@ -651,6 +651,7 @@ height: 10px;
 		max-height: 60%;
 	}
 	.video_fs {
+		max-height: 60%;
 		margin-bottom: 50px;
 	}
 	.comm_blk {
