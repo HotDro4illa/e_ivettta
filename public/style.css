@@ -650,12 +650,20 @@ height: 10px;
 		margin-bottom: 50px;
 		max-height: 60%;
 	}
+	.video_fs {
+		margin-bottom: 50px;
+	}
 	.comm_blk {
-		height: auto;
 		max-width: 80%;
 		font-size: 200%;
+		height: auto;
+		max-height: 50%;
 	}
 	.desc_blk {
-		max-height: none;
+		height: auto;
+		max-height: 50%;
+	}
+	.video_fs {
+		max-width: 80%;
 	}
 }
