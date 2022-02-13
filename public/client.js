@@ -180,7 +180,9 @@ function tiktok_scroll() {
     }, 1000); // Скорость прокрутки
 };
 async function get_desc(acc, file, time, id) {
-	window.navigator.clipboard.writeText(document.getElementById(id).src.split("thumb_").join(""))
+	if (document.location.href.search('https') == "0") {
+		window.navigator.clipboard.writeText(document.getElementById(id).src.split("thumb_").join(""))
+	}
     if (desc_list.includes(file.split(".")[0].split("_")[0] + "_" + file.split(".")[0].split("_")[1] + "_UTC.txt") == true) {
         let response = await fetch('https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc + "/" + file.split(".")[0].split("_")[0] + "_" + file.split(".")[0].split("_")[1] + "_UTC.txt");
         let text = await response.text();
