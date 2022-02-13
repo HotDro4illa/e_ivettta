@@ -108,7 +108,8 @@ function make_arch(material, acc_name) {
             let minute = material[i].split("_")[1].split("-")[1]
             let second = material[i].split("_")[1].split("-")[2]
             let time_str = "'" + day + "." + month + "." + year + " " + hour + ":" + minute + ":" + second + "'"
-            inner_vid += '<div class="img_block" id="' + i + '"><img onclick="get_desc(' + acc_name_ssil + "," + filename_ssil + "," + time_str + ')" class="arrows" src="arrows.svg" width="35px" height="auto"><img class="arrows_sd" src="arrows.svg" width="35px" height="auto"><video src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + "/" + material[i] + '" preload="none" poster="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + "/thumb_" + material[i] + '.jpg" controls></video><p class="img_date_str">' + day + "." + month + "." + year + " " + hour + ":" + minute + ":" + second + '</p></div>';
+			let id = "'mat_" + i + "'"
+            inner_vid += '<div class="img_block" id="' + i + '"><img onclick="get_desc(' + acc_name_ssil + "," + filename_ssil + "," + time_str + "," + id + ')" class="arrows" src="arrows.svg" width="35px" height="auto"><img class="arrows_sd" src="arrows.svg" width="35px" height="auto"><video id="mat_' + i + '" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + "/" + material[i] + '" preload="none" poster="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + "/thumb_" + material[i] + '.jpg" controls></video><p class="img_date_str">' + day + "." + month + "." + year + " " + hour + ":" + minute + ":" + second + '</p></div>';
             vids = vids + 1;
         }
         if ((material[i].slice(-1) == "g") && (material[i].slice(0, 1) != "t")) {
@@ -122,7 +123,8 @@ function make_arch(material, acc_name) {
             let minute = material[i].split("_")[1].split("-")[1]
             let second = material[i].split("_")[1].split("-")[2]
             let time_str = "'" + day + "." + month + "." + year + " " + hour + ":" + minute + ":" + second + "'"
-            inner_img += '<div onclick="get_desc(' + acc_name_ssil + "," + filename_ssil + "," + time_str + ')" class="img_block" id="' + i + '"><img class="arrows" src="arrows.svg" width="35px" height="auto"><img class="arrows_sd" src="arrows.svg" width="35px" height="auto"><img class="image" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + "/thumb_" + material[i] + '" loading="lazy"></img><p class="img_date_str">' + day + "." + month + "." + year + " " + hour + ":" + minute + ":" + second + '</p></div>';
+			let id = "'mat_" + i + "'"
+            inner_img += '<div onclick="get_desc(' + acc_name_ssil + "," + filename_ssil + "," + time_str + "," + id + ')" class="img_block" id="' + i + '"><img class="arrows" src="arrows.svg" width="35px" height="auto"><img class="arrows_sd" src="arrows.svg" width="35px" height="auto"><img id="mat_' + i + '" class="image" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + "/thumb_" + material[i] + '" loading="lazy"></img><p class="img_date_str">' + day + "." + month + "." + year + " " + hour + ":" + minute + ":" + second + '</p></div>';
         };
         if (material[i].slice(-5) == "k.mp4") {
             inner_tik += '<video style="margin: 30px;" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + "/" + material[i] + '" preload="none" poster="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + "/thumb_" + material[i] + '.jpg" controls></video>';
@@ -177,7 +179,8 @@ function tiktok_scroll() {
         scrollTop: $("#tiktok_cont").offset().top
     }, 1000); // Скорость прокрутки
 };
-async function get_desc(acc, file, time) {
+async function get_desc(acc, file, time, id) {
+	window.navigator.clipboard.writeText(document.getElementById(id).src.split("thumb_").join(""))
     if (desc_list.includes(file.split(".")[0].split("_")[0] + "_" + file.split(".")[0].split("_")[1] + "_UTC.txt") == true) {
         let response = await fetch('https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc + "/" + file.split(".")[0].split("_")[0] + "_" + file.split(".")[0].split("_")[1] + "_UTC.txt");
         let text = await response.text();
