@@ -634,7 +634,34 @@ height: 10px;
 	margin: 20px;
 }
 
+.anim_gradient {
+	font-weight: 700; 
+	background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d); 
+	background-size: 400% auto;
+	color: #000;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	animation: gradient_inst 10s linear infinite;
+}
+
+.anim_gradient_tiktok {
+	margin-top: 40px; 
+	text-align:center; 
+	font-weight: 700; 	
+	color: #fff;	
+	font-family: sans-serif;	
+	animation: tiktok_logo 0.6s ease infinite;
+}
+
 @media (orientation: portrait) {
+	.anim_gradient {
+		animation: none;
+	}
+	
+	.anim_gradient_tiktok {
+		animation: none;
+	}
+	
 	.star_bg {
 		display: none;
 	}

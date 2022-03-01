@@ -140,15 +140,15 @@ function make_arch(material, acc_name) {
     document.querySelector("#stats").innerHTML = "Сейчас архив насчитывает " + (vids) + " видео и фото!";
     document.getElementById("media_block").innerHTML = "";
     if (inner_vid != "") {
-        document.getElementById("media_block").insertAdjacentHTML('beforeend', '<div class="p_block" id="video_cont"><p class="category"><span class="category" style="font-weight: 700; background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d); background-size: 400% auto;color: #000;background-clip: text;text-fill-color: transparent;-webkit-background-clip: text;-webkit-text-fill-color: transparent; animation: gradient_inst 10s linear infinite;">Instagram: </span>видео и истории</p></div><div class="container" id="video" style=""></div>');
+        document.getElementById("media_block").insertAdjacentHTML('beforeend', '<div class="p_block" id="video_cont"><p class="category"><span class="category anim_gradient">Instagram: </span>видео и истории</p></div><div class="container" id="video" style=""></div>');
         document.getElementById("video").insertAdjacentHTML('beforeend', inner_vid);
     };
     if (inner_img != "") {
-        document.getElementById("media_block").insertAdjacentHTML('beforeend', '<div class="p_block" id="photo_cont"><p class="category" style="margin-top: 40px;"><span class="category" style="font-weight: 700; background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);  background-size: 400% auto;    color: #000;  background-clip: text;  text-fill-color: transparent;  -webkit-background-clip: text;  -webkit-text-fill-color: transparent; animation: gradient_inst 10s linear infinite;">Instagram: </span>Фотографии</p></div><div class="container" id="photo" style=""></div>');
+        document.getElementById("media_block").insertAdjacentHTML('beforeend', '<div class="p_block" id="photo_cont"><p class="category" style="margin-top: 40px;"><span class="category anim_gradient">Instagram: </span>Фотографии</p></div><div class="container" id="photo" style=""></div>');
         document.getElementById("photo").insertAdjacentHTML('beforeend', inner_img);
     };
     if (inner_tik != "") {
-        document.getElementById("media_block").insertAdjacentHTML('beforeend', '<div class="p_block" id="tiktok_cont"><p class="category" style="margin-top: 40px;"><span class="category" style="margin-top: 40px; text-align:center; font-weight: 700; 	color: #fff;	font-family: sans-serif;	animation: tiktok_logo 0.6s ease infinite;">TikTok: </span>клипы</p></div><div class="container" id="tiktok" style=""></div>');
+        document.getElementById("media_block").insertAdjacentHTML('beforeend', '<div class="p_block" id="tiktok_cont"><p class="category" style="margin-top: 40px;"><span class="category anim_gradient_tiktok">TikTok: </span>клипы</p></div><div class="container" id="tiktok" style=""></div>');
         document.getElementById("tiktok").insertAdjacentHTML('beforeend', inner_tik);
     };
 };
