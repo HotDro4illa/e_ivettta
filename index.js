@@ -2,11 +2,8 @@ const express = require('express');
 const app = express();
 const http = require('http');
 const server = http.createServer(app);
-var fs = require('fs');
 const {Server} = require("socket.io");
 const io = new Server(server);
-var wget = require('node-wget');
-
 
 const PORT = process.env.PORT || 3000;
 
