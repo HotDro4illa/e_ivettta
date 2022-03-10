@@ -803,7 +803,41 @@ span {
 	word-break: break-word;
 }
 
+.quick_ico {
+	width: 40px;
+	height: 40px;
+}
+
+.settings_ico {
+	width: 30px;
+	height: 30px;
+}
+
 @media (orientation: portrait) {
+	.quick_blk_small {
+	bottom: 40px;
+    right: 40px;
+	}
+	.quick_txt_settings {
+		width: 60px;
+		padding: 30px;
+	}
+	.settings_ico {
+		width: 60px;
+		height: 60px;
+	}
+	.quick_ico {
+		margin: 10px;
+		width: 80px;
+		height: 80px;
+	}
+	select {
+		    font-size: 2.5rem;
+    padding: 2rem;
+	}
+	.arch_p {
+    font-size: 2rem;
+}
 	.modal_settings {
 		padding: 50px;
 	}
