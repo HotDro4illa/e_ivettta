@@ -15,7 +15,7 @@ if (Cookies.get('effects') == null) {
 function turn_eff(state) {
 	if (state == "on") {
 		parallax_img();
-		document.getElementById("style-change").href = "style.css";
+		document.getElementById("style-change").href = "";
 	}
 	else {
 		$(document).off("mousemove", paral);
@@ -136,9 +136,9 @@ function make_feed(material, acc_name) {
 			slide_one = "post_slide_one"
 		};
 		if (post["comments"] != "") {
-			for (comm of post["comments"]) {
-				comment_str += '<div style="margin: 0 10px 0 10px;" class="comment"><span><span style="font-weight:bold; margin-right: 10px;">' + comm["owner"]["username"] + '</span>' + comm["text"] + '</span></div>'
-				for (answer of comm["answers"]) {
+			for (comm of post["comments"].reverse()) {
+				comment_str += '<div style="margin: 10px;" class="comment"><span><span style="font-weight:bold; margin-right: 10px;">' + comm["owner"]["username"] + '</span>' + comm["text"] + '</span></div>'
+				for (answer of comm["answers"].reverse()) {
 					comment_str += '<div style="margin-left: 30px;" class="comment"><span><span style="font-weight:bold; margin-right: 10px;">' + answer["owner"]["username"] + '</span>' + answer["text"] + '</span></div>'
 				};
 			};
@@ -356,7 +356,7 @@ function modal_show_settings() {
 	document.body.insertAdjacentHTML('beforeend', '<div id="overlay" class="overlay"><div id="sm_overlay" class="sm_overlay"></div></div>')
 	document.getElementById('sm_overlay').insertAdjacentHTML('beforeend', '<div class="modal_settings" id="modal_settings_inner"></div>')
 	document.getElementById('modal_settings_inner').insertAdjacentHTML('beforeend', param)
-	if (Cookies.get("effects") == "true") {
+	if (Cookies.get("effects") == "true" && window.innerHeight < window.innerWidth) {
 		checked = "checked";
 	}
 	else {
