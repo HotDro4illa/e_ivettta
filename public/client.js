@@ -103,6 +103,7 @@ async function scroll_top() {
 };
 
 function make_feed(material, acc_name) {
+	let ind = 0
 	let vids = 0;
 	document.getElementById("paral_photo").setAttribute("src", 'https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/' + acc_name + '/profile_pic.jpg')
 	Cookies.set('lastseen', acc_name, {expires:9999})
@@ -125,8 +126,8 @@ function make_feed(material, acc_name) {
 		if (post["description"] == '') {
 			post["description"] = '<i style="font-weight: 100;color: hsl(0deg 0% 50%);">Описание отсутствует</i>'
 		};
-
-		if (post["post"][0].split("_").at(-1) == "tiktok.mp4") {
+		ind = post["post"][0].split("_").length - 1;
+		if (post["post"][0].split("_")[ind] == "tiktok.mp4") {
 			post["time"] = "Видео_из_ТикТока"
 		};
 		if (post["post"].length > 1) {

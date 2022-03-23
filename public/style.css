@@ -150,6 +150,7 @@ video:focus-visible {
 }
 
 .image {
+	max-width: 100%;
 	margin: 0;
 	max-height: 400px;
 	transition: .1s ease;
@@ -791,6 +792,9 @@ select:hover {
     padding-left: 20px;
     margin-left: 20px;
     overflow-wrap: break-word;
+	max-height: 1000px;
+    overflow: auto;
+    min-width: 200px;
 }
 
 .comms_title {
@@ -941,7 +945,6 @@ span {
 		max-height: 700px;
 	}
 	.image {
-		height: 500px;
 		max-height: 500px;
 	}
 	.cross {
