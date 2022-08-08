@@ -16,7 +16,7 @@ const log = console.log;
 
 app.use(express.static("public"));
 
-app.get("/", async (req, res) => {
+app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
