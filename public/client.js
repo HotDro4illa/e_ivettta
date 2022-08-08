@@ -5,7 +5,7 @@ if (!Cookies.get("lastseen")) {
   Cookies.set("lastseen", "e_ivettta", { expires: 9999 });
 }
 if (!Cookies.get("view")) {
-  Cookies.set("view", "gallery", { expires: 9999 });
+  Cookies.set("view", "feed", { expires: 9999 });
 }
 if (!Cookies.get("effects")) {
   Cookies.set("effects", "true", { expires: 9999 });
