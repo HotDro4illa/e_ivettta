@@ -423,7 +423,7 @@ function modal_show_settings() {
 }
 
 function change_arch() {
-  get_material("selected");
+  get_material(document.querySelector("#arch_sel").value);
 }
 
 function accs(arch) {
