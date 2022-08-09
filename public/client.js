@@ -151,10 +151,10 @@ function make_feed(acc_name) {
     if (post["comments"] != "") {
       all_comms = post["comments"].slice();
       for (comm of all_comms.reverse()) {
-        comment_str += `<div style="margin: 10px;" class="comment"><span><span style="font-weight:bold; margin-right: 10px;">${comm["owner"]["username"]}</span>${comm["text"]}</span></div>`;
+        comment_str += `<div style="margin: 10px;" class="comment"><span><span class="post_name_comms" style="font-weight:bold; margin-right: 10px;">${comm["owner"]["username"]}</span>${comm["text"]}</span></div>`;
         all_answ = comm["answers"].slice();
         for (answer of all_answ.reverse()) {
-          comment_str += `<div style="margin-left: 3rem;" class="comment"><span><span style="font-weight:bold; margin-right: 10px;">${answer["owner"]["username"]}</span>${answer["text"]}</span></div>`;
+          comment_str += `<div style="margin-left: 3rem;" class="comment"><span><span class="post_name_comms" style="font-weight:bold; margin-right: 10px;">${answer["owner"]["username"]}</span>${answer["text"]}</span></div>`;
         }
       }
       comment_str = `<hr style="margin: 10px 0 10px 0" size="1px" color="#4d4d4d"><div class="post_comms"><p class="comms_title">Комментарии:</p><div class="comms_scroll">${comment_str}</div></div>`;
