@@ -27,7 +27,6 @@ function turn_eff(state) {
 
 if (Cookies.get("effects") == "false") {
   turn_eff("off");
-  snowStorm.start();
   snowStorm.freeze();
 } else {
   if (window.innerHeight < window.innerWidth) {
@@ -77,12 +76,16 @@ function parallax_img() {
   $(document).mousemove(paral);
 }
 
+function fadein() {
+  document.querySelector("#media_block").classList.toggle("del_fade");
+}
+
 async function scroll_top() {
-  $("html, body").animate(
+  await $("html, body").animate(
     {
       scrollTop: $("#str_top").offset().top,
     },
-    100
+    1000
   ); // Скорость прокрутки
 }
 
@@ -105,7 +108,8 @@ function make_feed(acc_name) {
       dir_mat = material[acc_name];
     }
   }
-  for (post of dir_mat["feed"].reverse()) {
+  all_post = dir_mat["feed"].slice();
+  for (post of all_post.reverse()) {
     comment_str = "";
     post_item = "";
     for (file of post["files"]) {
@@ -118,7 +122,13 @@ function make_feed(acc_name) {
       }
     }
     if (post["description"] == "") {
-      post["description"] = "Описание отсутствует";
+      description = "";
+    } else {
+      description = `<div class="post_bottom"><div class="post_desc"><span><span class="post_name_comms">${acc_name}</span>${post[
+        "description"
+      ]
+        .split("\n")
+        .join("<br>")}</span></div></div>`;
     }
     if (post["files"][0]["file_type"] == "tiktok") {
       post["date"] = "Видео из ТикТока";
@@ -127,16 +137,17 @@ function make_feed(acc_name) {
       ? (slide_one = "post_slide")
       : (slide_one = "post_slide_one");
     if (post["comments"] != "") {
-      for (comm of post["comments"].reverse()) {
+      all_comms = post["comments"].slice();
+      for (comm of all_comms.reverse()) {
         comment_str += `<div style="margin: 10px;" class="comment"><span><span style="font-weight:bold; margin-right: 10px;">${comm["owner"]["username"]}</span>${comm["text"]}</span></div>`;
-        for (answer of comm["answers"].reverse()) {
+        all_answ = comm["answers"].slice();
+        for (answer of all_answ.reverse()) {
           comment_str += `<div style="margin-left: 30px;" class="comment"><span><span style="font-weight:bold; margin-right: 10px;">${answer["owner"]["username"]}</span>${answer["text"]}</span></div>`;
         }
       }
-      comment_str = `<p class="comms_title">Комментарии:</p><hr style="margin: 10px 0 10px 0" size="1px" color="#4d4d4d">${comment_str}`;
+      comment_str = `<hr style="margin: 10px 0 10px 0" size="1px" color="#4d4d4d"><div class="post_comms"><p class="comms_title">Комментарии:</p><div class="comms_scroll">${comment_str}</div></div>`;
     } else {
-      comment_str =
-        '<i style="margin: 0 10px 0 10px;font-weight: 100;color: hsl(0deg 0% 50%);">Комментарии отсутствуют</i>';
+      comment_str = "";
     }
     if (post["geolocation"] != "") {
       geo = `<div class="geo_blk"><img class="geo_icon" src="geo.png"/><a class="post_time link" href="${
@@ -155,21 +166,15 @@ function make_feed(acc_name) {
       post["date"]["minute"]
     }:${post["date"]["second"]} ${post["date"]["day"]}.${
       post["date"]["month"]
-    }.${post["date"]["year"]}</p>
+    }.${post["date"]["year"]}
+             </p>
+             ${geo ? geo : ""}
           </div>
        </div>
        <div id="post_slide" class="${slide_one}">${post_item}</div>
-       ${geo ? geo : ""}
-       <hr style="margin: 10px 0 10px 0" size="1px" color="#4d4d4d">
-       <div class="post_bottom">
-          <div class="post_desc"><span><span class="post_name_comms">${acc_name}</span>${post[
-      "description"
-    ]
-      .split("\n")
-      .join("<br>")}</span></div>
-       </div>
+       ${description}     
+       ${comment_str}
     </div>
-    <div class="post_comms">${comment_str}</div>
  </div>`;
   }
   document.querySelector(
@@ -194,8 +199,7 @@ function make_feed(acc_name) {
     });
   });
 }
-
-async function get_material(selected) {
+function get_material(selected) {
   scroll_top();
   acc_name = selected || Cookies.get("lastseen");
   if (Cookies.get("view") == "feed") {
@@ -220,7 +224,7 @@ function make_arch(acc_name) {
     );
   for (material of all_mat["accs"]) {
     if (material[acc_name]) {
-      dir_mat = material[acc_name];
+      dir_mat = material[acc_name].slice();
     }
   }
   dir_mat["gallery"][0]["videos"].reverse();
@@ -364,7 +368,7 @@ function change_view() {
   get_material();
 }
 
-function change_effect() {
+async function change_effect() {
   if (Cookies.get("effects") == "true") {
     turn_eff("off");
     Cookies.set("effects", "false", { expires: 9999 });
@@ -372,7 +376,7 @@ function change_effect() {
   } else {
     turn_eff("on");
     Cookies.set("effects", "true", { expires: 9999 });
-    snowStorm.resume();
+    snowStorm.start();
   }
 }
 

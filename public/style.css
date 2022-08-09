@@ -1230,6 +1230,10 @@ select:hover {
   flex-direction: row;
 }
 
+.del_fade {
+  opacity: 0;
+}
+
 .post_upper {
   display: flex;
   flex-direction: row;
@@ -1241,6 +1245,7 @@ select:hover {
 }
 
 .post_bottom {
+  margin: 10px 0 10px 10px;
 }
 
 .post_logo {
@@ -1281,11 +1286,12 @@ select:hover {
 }
 
 .post_desc {
-  margin: 0 10px 0 10px;
   color: white;
   display: flex;
-  max-height: 150px;
+  max-height: 10rem;
   overflow: auto;
+  font-weight: 100;
+  padding: 10px;
 }
 
 .main_wrap {
@@ -1294,21 +1300,18 @@ select:hover {
 }
 
 .post_comms {
-  max-width: 300px;
   color: white;
-  border-left: 1px solid #4d4d4d;
-  padding-left: 20px;
-  margin-left: 20px;
   overflow-wrap: break-word;
   max-height: 1000px;
   overflow: auto;
   min-width: 200px;
+  margin-left: 10px;
 }
 
 .comms_title {
-  margin: 0 20px 10px 0px;
-  font-size: 22px;
-  font-weight: 100;
+  margin: 0;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 span {
@@ -1337,13 +1340,23 @@ span {
   display: flex;
   align-content: center;
   align-items: center;
-  margin-top: 5px;
 }
 
 .geo_icon {
   filter: brightness(0.6);
-  height: 1.2rem;
-  margin-right: 0.5rem;
+  height: 1rem;
+  margin-right: 0.2rem;
+}
+
+.comms_scroll {
+  background: hsl(255deg 5% 6% / 50%);
+  max-height: 10rem;
+  overflow: auto;
+  border-radius: 0.5rem;
+}
+
+.media_block {
+  transition: 1s;
 }
 @media (orientation: portrait) {
   .geo_blk {
@@ -1394,6 +1407,7 @@ span {
   }
   .comms_title {
     font-size: 2.5rem;
+    margin-bottom: 0.5rem;
   }
 
   .post_name_comms {
