@@ -127,6 +127,7 @@ body {
 
 video {
   max-height: 400px;
+  cursor: pointer;
 }
 
 video:focus-visible {

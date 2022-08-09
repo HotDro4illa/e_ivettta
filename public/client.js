@@ -89,6 +89,11 @@ async function scroll_top() {
   ); // Скорость прокрутки
 }
 
+function videoplay(e) {
+  e.stopPropagation();
+  e["target"].play();
+}
+
 function make_feed(acc_name) {
   let ind = 0;
   let vids = 0;
@@ -221,6 +226,9 @@ function make_feed(acc_name) {
       centerMode: true,
     });
   });
+  for (video of document.getElementsByTagName("video")) {
+    video.addEventListener("click", videoplay, { once: true });
+  }
 }
 function get_material(selected) {
   scroll_top();
