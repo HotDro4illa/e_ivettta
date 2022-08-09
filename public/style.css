@@ -1245,7 +1245,6 @@ select:hover {
 }
 
 .post_bottom {
-  margin: 10px 0 10px 10px;
 }
 
 .post_logo {
@@ -1291,9 +1290,14 @@ select:hover {
   max-height: 10rem;
   overflow: auto;
   font-weight: 100;
+  background: hsl(255deg 5% 6% / 50%);
+  border-radius: 0.5rem;
   padding: 10px;
+  margin-top: 1rem;
 }
-
+.slick_material {
+  max-width: 40rem;
+}
 .main_wrap {
   min-width: 400px;
   max-width: 700px;
@@ -1305,7 +1309,6 @@ select:hover {
   max-height: 1000px;
   overflow: auto;
   min-width: 200px;
-  margin-left: 10px;
 }
 
 .comms_title {
@@ -1353,6 +1356,7 @@ span {
   max-height: 10rem;
   overflow: auto;
   border-radius: 0.5rem;
+  font-weight: 100;
 }
 
 .media_block {
@@ -1406,8 +1410,10 @@ span {
     font-size: 2rem;
   }
   .comms_title {
-    font-size: 2.5rem;
+    margin: 0;
+    font-size: 1rem;
     margin-bottom: 0.5rem;
+    font-weight: 900;
   }
 
   .post_name_comms {

@@ -115,18 +115,30 @@ function make_feed(acc_name) {
     for (file of post["files"]) {
       vids += 1;
       if (file["file_type"] == "image") {
-        post_item += `<div class="slide_wrap"><img class="image feed" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/${file["file"]}" loading="lazy"></img></div>`;
+        post_item += `<div class="slide_wrap"><img class="image feed ${
+          post["files"].length > 1 ? "slick_material" : ""
+        }" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/${
+          file["file"]
+        }" loading="lazy"></img></div>`;
       }
       if (file["file_type"] == "video") {
-        post_item += `<div class="slide_wrap"><video id="${vids}" class="feed" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/${file["file"]}" preload="none" poster="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/${file["thumbnail"]}" controls></video></div>`;
+        post_item += `<div class="slide_wrap"><video id="${vids}" class="feed ${
+          post["files"].length > 1 ? "slick_material" : ""
+        }" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/${
+          file["file"]
+        }" preload="none" poster="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/${
+          file["thumbnail"]
+        }" controls></video></div>`;
       }
     }
     if (post["description"] == "") {
       description = "";
     } else {
-      description = `<div class="post_bottom"><div class="post_desc"><span><span class="post_name_comms">${acc_name}</span>${post[
-        "description"
-      ]
+      description = `<div class="post_bottom"><div class="post_desc"><span><span class="post_name_comms">${
+        post["json_data"]
+          ? post["json_data"]["node"]["owner"]["username"]
+          : acc_name
+      }</span>${post["description"]
         .split("\n")
         .join("<br>")}</span></div></div>`;
     }
@@ -142,7 +154,7 @@ function make_feed(acc_name) {
         comment_str += `<div style="margin: 10px;" class="comment"><span><span style="font-weight:bold; margin-right: 10px;">${comm["owner"]["username"]}</span>${comm["text"]}</span></div>`;
         all_answ = comm["answers"].slice();
         for (answer of all_answ.reverse()) {
-          comment_str += `<div style="margin-left: 30px;" class="comment"><span><span style="font-weight:bold; margin-right: 10px;">${answer["owner"]["username"]}</span>${answer["text"]}</span></div>`;
+          comment_str += `<div style="margin-left: 3rem;" class="comment"><span><span style="font-weight:bold; margin-right: 10px;">${answer["owner"]["username"]}</span>${answer["text"]}</span></div>`;
         }
       }
       comment_str = `<hr style="margin: 10px 0 10px 0" size="1px" color="#4d4d4d"><div class="post_comms"><p class="comms_title">Комментарии:</p><div class="comms_scroll">${comment_str}</div></div>`;
@@ -156,12 +168,23 @@ function make_feed(acc_name) {
     } else {
       geo = false;
     }
+    if (post["json_data"]) {
+      if (post["json_data"]["node"]["owner"]["username"] != acc_name) {
+        link = "no_signal.png";
+      } else {
+        link = `https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/profile_pic.jpg`;
+      }
+    }
     inner_posts += `<div class="post_main">
     <div class="main_wrap">
        <div class="post_upper">
-          <img class="post_logo" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/profile_pic.jpg"></img>
+          <img class="post_logo" src="${link}"></img>
           <div class="post_info">
-             <p class="post_name">${acc_name}</p class="post_time">
+             <p class="post_name">${
+               post["json_data"]
+                 ? post["json_data"]["node"]["owner"]["username"]
+                 : acc_name
+             }</p class="post_time">
              <p class="post_time">${post["date"]["hour"]}:${
       post["date"]["minute"]
     }:${post["date"]["second"]} ${post["date"]["day"]}.${
