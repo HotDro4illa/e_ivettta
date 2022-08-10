@@ -255,22 +255,19 @@ function make_arch(acc_name) {
     );
   for (material of all_mat["accs"]) {
     if (material[acc_name]) {
-      dir_mat = material[acc_name].slice();
+      dir_mat = material[acc_name]["gallery"];
+      break;
     }
   }
-  dir_mat["gallery"][0]["videos"].reverse();
-  dir_mat["gallery"][0]["photos"].reverse();
-  dir_mat["gallery"][0]["tiktok"].reverse();
-
-  for (vid of dir_mat["gallery"][0]["videos"]) {
+  for (vid of dir_mat[0]["videos"]) {
     inner_vid += `<div class="img_block"><video id="mat_${vid["file"]}" class="clickable" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/${vid["file"]}" preload="none" poster="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/${vid["thumbnail"]}" controls></video><p class="img_date_str">${vid["date"]["hour"]}:${vid["date"]["minute"]}:${vid["date"]["second"]} ${vid["date"]["day"]}.${vid["date"]["month"]}.${vid["date"]["year"]}</p></div>`;
     vids = vids + 1;
   }
-  for (vid of dir_mat["gallery"][0]["photos"]) {
+  for (vid of dir_mat[0]["photos"]) {
     inner_img += `<div class="img_block"><img full="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/${vid["file"]}" class="image clickable" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/${vid["thumbnail"]}" loading="lazy"></img><p class="img_date_str">${vid["date"]["hour"]}:${vid["date"]["minute"]}:${vid["date"]["second"]} ${vid["date"]["day"]}.${vid["date"]["month"]}.${vid["date"]["year"]}</p></div>`;
     vids = vids + 1;
   }
-  for (vid of dir_mat["gallery"][0]["tiktok"]) {
+  for (vid of dir_mat[0]["tiktok"]) {
     inner_tik += `<video style="margin: 30px;" class="clickable" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/${vid["file"]}" preload="none" poster="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/${vid["thumbnail"]}" controls></video>`;
     vids = vids + 1;
   }
