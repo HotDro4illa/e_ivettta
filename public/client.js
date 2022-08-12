@@ -1,6 +1,4 @@
-var socket = io();
 var log = console.log;
-
 if (!Cookies.get("lastseen")) {
   Cookies.set("lastseen", "e_ivettta", { expires: 9999 });
 }
@@ -179,6 +177,8 @@ function make_feed(acc_name) {
       } else {
         link = `https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/profile_pic.jpg`;
       }
+    } else {
+      link = `https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/profile_pic.jpg`;
     }
     inner_posts += `<div class="post_main">
     <div class="main_wrap">
@@ -207,7 +207,7 @@ function make_feed(acc_name) {
   }
   document.querySelector(
     "#stats"
-  ).innerHTML = `Сейчас архив насчитывает ${vids} видео и фото!`;
+  ).innerHTML = `Сейчас архив <span class="stat_name">${acc_name}</span> насчитывает ${vids} видео и фото!`;
   document.getElementById("media_block").innerHTML = "";
   document
     .getElementById("media_block")
@@ -260,7 +260,7 @@ function make_arch(acc_name) {
     }
   }
   for (vid of dir_mat[0]["videos"]) {
-    inner_vid += `<div class="img_block"><video id="mat_${vid["file"]}" class="clickable" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/${vid["file"]}" preload="none" poster="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/${vid["thumbnail"]}" controls></video><p class="img_date_str">${vid["date"]["hour"]}:${vid["date"]["minute"]}:${vid["date"]["second"]} ${vid["date"]["day"]}.${vid["date"]["month"]}.${vid["date"]["year"]}</p></div>`;
+    inner_vid += `<div class="img_block"><video class="clickable" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/${vid["file"]}" preload="none" poster="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/${vid["thumbnail"]}"></video><p class="img_date_str">${vid["date"]["hour"]}:${vid["date"]["minute"]}:${vid["date"]["second"]} ${vid["date"]["day"]}.${vid["date"]["month"]}.${vid["date"]["year"]}</p></div>`;
     vids = vids + 1;
   }
   for (vid of dir_mat[0]["photos"]) {
@@ -274,7 +274,7 @@ function make_arch(acc_name) {
 
   document.querySelector(
     "#stats"
-  ).innerHTML = `Сейчас архив насчитывает ${vids} видео и фото!`;
+  ).innerHTML = `Сейчас архив <span class="stat_name">${acc_name}</span> насчитывает ${vids} видео и фото!`;
   document.getElementById("media_block").innerHTML = "";
   if (inner_vid) {
     document
@@ -354,36 +354,30 @@ function get_desc(e) {
       .querySelector("body")
       .insertAdjacentHTML(
         "beforeend",
-        `<div onclick="remove_ol()" id="overlay" class="overlay"><video class="video_fs" id="ol_mat" src="${elem.src}" loop autoplay poster="${elem.poster}" controls></video></div>`
+        `<div id="overlay" class="overlay"><video class="video_fs" id="ol_mat" controls src="${elem.src}" loop autoplay poster="${elem.poster}"></video></div>`
       );
   } else {
     document
       .querySelector("body")
       .insertAdjacentHTML(
         "beforeend",
-        `<div onclick="remove_ol()" id="overlay" class="overlay"><img id="ol_mat" class="image_fs" src="${elem.getAttribute(
+        `<div id="overlay" class="overlay"><img id="ol_mat" class="image_fs" src="${elem.getAttribute(
           "full"
         )}"></img></div>`
       );
   }
-  document.querySelector("#ol_mat").addEventListener("click", (e) => {
-    e.stopPropagation();
-  });
+  document.querySelector("#overlay").addEventListener("click", remove_ol);
 }
 
-function remove_ol() {
-  document.getElementById("overlay").remove();
+function remove_ol(e) {
+  if (e.target.className == "overlay") {
+    document.getElementById("overlay").remove();
+  }
 }
 
 document.addEventListener("keydown", function (event) {
   if (event.code == "Escape" && document.getElementById("overlay")) {
     document.getElementById("overlay").remove();
-  }
-});
-document.addEventListener("click", function (event) {
-  event.stopPropagation();
-  if (event.target.id == "sm_overlay") {
-    remove_ol();
   }
 });
 
@@ -426,10 +420,10 @@ function modal_show_settings() {
     ' onchange="change_view()" class="param_input" name="view" type="radio" value="gallery">Галерея</p></div></div>';
   document.body.insertAdjacentHTML(
     "beforeend",
-    '<div id="overlay" class="overlay"><div id="sm_overlay" class="sm_overlay"></div></div>'
+    '<div id="overlay" class="overlay"></div></div>'
   );
   document
-    .getElementById("sm_overlay")
+    .getElementById("overlay")
     .insertAdjacentHTML(
       "beforeend",
       '<div class="modal_settings" id="modal_settings_inner"></div>'
@@ -452,6 +446,7 @@ function modal_show_settings() {
   document
     .getElementById("modal_settings_inner")
     .insertAdjacentHTML("beforeend", param);
+  document.querySelector("#overlay").addEventListener("click", remove_ol);
 }
 
 function change_arch() {
