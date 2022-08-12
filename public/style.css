@@ -11,6 +11,10 @@ body {
   background-color: #0c0c0e;
 }
 
+.gallery_item {
+  height: 25rem;
+}
+
 .stat_name {
   background: linear-gradient(
     45deg,
@@ -145,7 +149,8 @@ body {
 }
 
 video {
-  max-height: 400px;
+  height: 25rem;
+  width: auto;
   cursor: pointer;
 }
 
@@ -1163,6 +1168,8 @@ select:hover {
 }
 
 .video_fs {
+  height: 90%;
+  width: auto;
   max-height: 90%;
   max-width: 90%;
 }
@@ -1240,6 +1247,7 @@ select:hover {
 }
 
 .feed {
+  height: 50rem;
   max-height: 50rem;
 }
 
@@ -1537,6 +1545,7 @@ span {
 
   .feed {
     max-height: 60rem;
+    height: 60rem;
   }
 
   .post_main {
@@ -1584,6 +1593,8 @@ span {
     max-height: 80%;
   }
   .video_fs {
+    height: 90%;
+    width: auto;
     max-width: 90%;
     max-height: 80%;
   }
@@ -1600,7 +1611,7 @@ span {
   }
 
   video {
-    max-height: 30rem;
+    height: 30rem;
   }
   .image {
     max-height: 60rem;

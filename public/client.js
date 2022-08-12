@@ -260,7 +260,7 @@ function make_arch(acc_name) {
     }
   }
   for (vid of dir_mat[0]["videos"]) {
-    inner_vid += `<div class="img_block"><video class="clickable" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/${vid["file"]}" preload="none" poster="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/${vid["thumbnail"]}"></video><p class="img_date_str">${vid["date"]["hour"]}:${vid["date"]["minute"]}:${vid["date"]["second"]} ${vid["date"]["day"]}.${vid["date"]["month"]}.${vid["date"]["year"]}</p></div>`;
+    inner_vid += `<div class="img_block"><video class="clickable gallery_item" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/${vid["file"]}" preload="none" poster-jpeg="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/${vid["thumbnail_jpg"]}" poster-gif="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/${vid["thumbnail_gif"]}" poster="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/${vid["thumbnail_jpg"]}"></video><p class="img_date_str">${vid["date"]["hour"]}:${vid["date"]["minute"]}:${vid["date"]["second"]} ${vid["date"]["day"]}.${vid["date"]["month"]}.${vid["date"]["year"]}</p></div>`;
     vids = vids + 1;
   }
   for (vid of dir_mat[0]["photos"]) {
@@ -268,7 +268,7 @@ function make_arch(acc_name) {
     vids = vids + 1;
   }
   for (vid of dir_mat[0]["tiktok"]) {
-    inner_tik += `<video style="margin: 30px;" class="clickable" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/${vid["file"]}" preload="none" poster="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/${vid["thumbnail"]}" controls></video>`;
+    inner_tik += `<video style="margin: 30px;" class="clickable" src="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/${vid["file"]}" preload="none" poster-jpeg="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/${vid["thumbnail_jpg"]}" poster-gif="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/${vid["thumbnail_gif"]}" poster="https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/${vid["thumbnail_jpg"]}" controls></video>`;
     vids = vids + 1;
   }
 
@@ -309,6 +309,20 @@ function make_arch(acc_name) {
   for (elem of document.getElementsByClassName("clickable")) {
     elem.addEventListener("click", get_desc);
   }
+  for (elem of document.getElementsByTagName("video")) {
+    elem.addEventListener("mouseover", add_gif);
+  }
+  for (elem of document.getElementsByTagName("video")) {
+    elem.addEventListener("mouseout", rm_gif);
+  }
+}
+
+function add_gif(e) {
+  e.target.poster = e.target.getAttribute("poster-gif");
+}
+
+function rm_gif(e) {
+  e.target.poster = e.target.getAttribute("poster-jpeg");
 }
 
 function photo_scroll() {
