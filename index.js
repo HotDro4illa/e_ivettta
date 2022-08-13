@@ -11,8 +11,12 @@ const log = console.log;
 
 app.use(express.static(path.join(__dirname, "public")));
 
-app.get("/", (req, res) => {
+app.get("/arch", (req, res) => {
   res.sendFile(__dirname + "/index.html");
+});
+
+app.get("*", (req, res) => {
+  res.redirect("arch");
 });
 
 server.listen(PORT, () => {

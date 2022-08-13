@@ -9,15 +9,33 @@ if (!Cookies.get("effects")) {
   Cookies.set("effects", "true", { expires: 9999 });
 }
 
-if (document.URL.match(/#/g)) {
-  document.URL.match(/#/g).length == 2
-    ? Cookies.set("lastseen", document.URL.split("#")[1], { expires: 9999 })
-    : false;
-
-  document.URL.match(/#/g).length == 2
-    ? Cookies.set("view", document.URL.split("#")[2], { expires: 9999 })
-    : false;
+function setLocation(user, view) {
+  history.pushState(
+    {},
+    `Публичный МегаАрхив:${user}`,
+    location.origin + location.pathname + `?user=${user}&view=${view}`
+  );
 }
+
+function GetParams() {
+  return window.location.search
+    .replace("?", "")
+    .split("&")
+    .reduce(function (p, e) {
+      var a = e.split("=");
+      p[decodeURIComponent(a[0])] = decodeURIComponent(a[1]);
+      return p;
+    }, {});
+}
+
+GetParams()["user"] && GetParams()["view"]
+  ? Cookies.set("lastseen", GetParams()["user"], { expires: 9999 })
+  : false;
+
+GetParams()["user"] && GetParams()["view"]
+  ? Cookies.set("view", GetParams()["view"], { expires: 9999 })
+  : false;
+
 function turn_eff(state) {
   if (state == "on") {
     parallax_img();
@@ -240,12 +258,10 @@ function make_feed(acc_name) {
 }
 function get_material(selected) {
   scroll_top();
-  setLocation(`#${Cookies.get("lastseen")}#${Cookies.get("view")}`);
-  if (document.URL.match(/#/g).length == 2) {
-    acc_name = document.URL.split("#")[1];
-    document.URL.split("#")[2] == "feed"
-      ? make_feed(acc_name)
-      : make_arch(acc_name);
+  setLocation(Cookies.get("lastseen"), Cookies.get("view"));
+  if (GetParams()["user"] && GetParams()["view"]) {
+    acc_name = GetParams()["user"];
+    GetParams()["view"] == "feed" ? make_feed(acc_name) : make_arch(acc_name);
     return;
   }
   acc_name = selected || Cookies.get("lastseen");
@@ -254,11 +270,6 @@ function get_material(selected) {
   } else {
     make_arch(acc_name);
   }
-}
-
-function setLocation(curLoc) {
-  location.href = curLoc;
-  location.hash = curLoc;
 }
 
 function make_arch(acc_name) {
