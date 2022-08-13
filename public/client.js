@@ -9,6 +9,15 @@ if (!Cookies.get("effects")) {
   Cookies.set("effects", "true", { expires: 9999 });
 }
 
+if (document.URL.match(/#/g)) {
+  document.URL.match(/#/g).length == 2
+    ? Cookies.set("lastseen", document.URL.split("#")[1], { expires: 9999 })
+    : false;
+
+  document.URL.match(/#/g).length == 2
+    ? Cookies.set("view", document.URL.split("#")[2], { expires: 9999 })
+    : false;
+}
 function turn_eff(state) {
   if (state == "on") {
     parallax_img();
@@ -101,7 +110,6 @@ function make_feed(acc_name) {
       "src",
       `https://raw.githubusercontent.com/HotDro4illa/e-ivettta-filehost/master/arch/${acc_name}/profile_pic.jpg`
     );
-  Cookies.set("lastseen", acc_name, { expires: 9999 });
   let inner_posts = "";
   let post_item = "";
   let slide_one = "";
@@ -232,13 +240,25 @@ function make_feed(acc_name) {
 }
 function get_material(selected) {
   scroll_top();
+  setLocation(`#${Cookies.get("lastseen")}#${Cookies.get("view")}`);
+  if (document.URL.match(/#/g).length == 2) {
+    acc_name = document.URL.split("#")[1];
+    document.URL.split("#")[2] == "feed"
+      ? make_feed(acc_name)
+      : make_arch(acc_name);
+    return;
+  }
   acc_name = selected || Cookies.get("lastseen");
   if (Cookies.get("view") == "feed") {
     make_feed(acc_name);
-  }
-  if (Cookies.get("view") == "gallery") {
+  } else {
     make_arch(acc_name);
   }
+}
+
+function setLocation(curLoc) {
+  location.href = curLoc;
+  location.hash = curLoc;
 }
 
 function make_arch(acc_name) {
@@ -246,7 +266,7 @@ function make_arch(acc_name) {
   var inner_img = "";
   var inner_tik = "";
   var vids = 0;
-  Cookies.set("lastseen", acc_name, { expires: 9999 });
+
   document
     .getElementById("paral_photo")
     .setAttribute(
@@ -464,6 +484,9 @@ function modal_show_settings() {
 }
 
 function change_arch() {
+  Cookies.set("lastseen", document.querySelector("#arch_sel").value, {
+    expires: 9999,
+  });
   get_material(document.querySelector("#arch_sel").value);
 }
 

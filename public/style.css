@@ -209,7 +209,6 @@ video:focus-visible {
 .image {
   max-width: 100%;
   margin: 0;
-  max-height: 400px;
   transition: 0.1s ease;
 }
 
@@ -1247,7 +1246,7 @@ select:hover {
 }
 
 .feed {
-  height: 50rem;
+  height: 100%;
   max-height: 50rem;
 }
 
@@ -1545,7 +1544,7 @@ span {
 
   .feed {
     max-height: 60rem;
-    height: 60rem;
+    height: 100%;
   }
 
   .post_main {
