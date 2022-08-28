@@ -1,100 +1,82 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-<title>Публичный МегаАрхив</title>
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" id="style-change" href="">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600;800&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" id="style-change" href="slick.css">
-<link rel="stylesheet" id="style-change" href="slick-theme.css">
-<link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-57x57.png" />
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114.png" />
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72.png" />
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144x144.png" />
-<link rel="apple-touch-icon-precomposed" sizes="60x60" href="apple-touch-icon-60x60.png" />
-<link rel="apple-touch-icon-precomposed" sizes="120x120" href="apple-touch-icon-120x120.png" />
-<link rel="apple-touch-icon-precomposed" sizes="76x76" href="apple-touch-icon-76x76.png" />
-<link rel="apple-touch-icon-precomposed" sizes="152x152" href="apple-touch-icon-152x152.png" />
-<link rel="icon" type="image/png" href="favicon-196x196.png" sizes="196x196" />
-<link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
-<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
-<link rel="icon" type="image/png" href="favicon-128.png" sizes="128x128" />
-<link rel="icon" href="apple-touch-icon-57x57.png"/>
-<meta name="msapplication-TileImage" content="mstile-144x144.png" />
-<meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
-<meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
-<meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
-<meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
-</head>
+   <head>
+      <title>Публичный МегаАрхив</title>
+      <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" id="style-change" href="">
+      <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600;800&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" id="style-change" href="slick.css">
+      <link rel="stylesheet" id="style-change" href="slick-theme.css">
+      <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-57x57.png" />
+      <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114.png" />
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72.png" />
+      <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144x144.png" />
+      <link rel="apple-touch-icon-precomposed" sizes="60x60" href="apple-touch-icon-60x60.png" />
+      <link rel="apple-touch-icon-precomposed" sizes="120x120" href="apple-touch-icon-120x120.png" />
+      <link rel="apple-touch-icon-precomposed" sizes="76x76" href="apple-touch-icon-76x76.png" />
+      <link rel="apple-touch-icon-precomposed" sizes="152x152" href="apple-touch-icon-152x152.png" />
+      <link rel="icon" type="image/png" href="favicon-196x196.png" sizes="196x196" />
+      <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+      <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+      <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
+      <link rel="icon" type="image/png" href="favicon-128.png" sizes="128x128" />
+      <link rel="icon" href="apple-touch-icon-57x57.png"/>
+      <meta name="msapplication-TileImage" content="mstile-144x144.png" />
+      <meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
+      <meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
+      <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
+      <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
+      <meta name='viewport' content='width=device-width,initial-scale=1'/>
+      <meta content='true' name='HandheldFriendly'/>
+      <meta content='width' name='MobileOptimized'/>
+      <meta content='yes' name='apple-mobile-web-app-capable'/>
+   </head>
+   <body>
+      <div style="position: absolute; top:0;" id="str_top" width="0" height="0"></div>
+      <header class="header">
+         <div class="arch_sel">
+         <select id="arch_sel">
+            <option selected value="e_ivettta">Загрузка...</option>
+         </select>
+         <p class="arch_p">список архивов</p>
+      </div>
+      <div class="quick_blk_small">
+         <p class="quick_txt_settings" onclick="modal_show_settings()"><img class="settings_ico" src="settings.png"></img></p>
+         <p class="quick_txt2_small quick_txt1_small" onclick="video_scroll()" id="qc_video"><img class="quick_ico" src="video_ic.png"></img></p>
+         <p class="quick_txt1_small" onclick="photo_scroll()" id="qc_photo"><img class="quick_ico" src="photo_ic.png"></img></p>
+         <p class="quick_txt3_small quick_txt1_small" onclick="tiktok_scroll()" id="qc_tiktok"><img class="quick_ico" src="tiktok_ic.png"></img></p>
+      </div>
+      </header>
+      <div id="star_bg" class="star_bg" style="position: fixed; z-index: -10; width: 100%; height: 100%;">
+         <div id='stars'></div>
+         <div id='stars2'></div>
+         <div id='stars3'></div>
+      </div>
+      <div id="xmas_bg" style="position: fixed; z-index: -10; width: 100%; height: 100%;"></div>
 
-
-<body>
-<div style="position: absolute; top:0;" id="str_top" width="0" height="0"></div>
-<header class="header"></header>
-<div id="star_bg" class="star_bg" style="position: fixed; z-index: -10; width: 100%; height: 100%;">
-<div id='stars'></div>
-<div id='stars2'></div>
-<div id='stars3'></div>
-</div>
-
-<div id="xmas_bg" style="position: fixed; z-index: -10; width: 100%; height: 100%;"></div>
-
-<div class="quick_blk_small">
-<p class="quick_txt_settings" onclick="modal_show_settings()"><img class="settings_ico" src="settings.png"></img></p>
-<p class="quick_txt2_small" onclick="video_scroll()" id="qc_video" style="border-radius: 40px 40px 0px 0px;"><img class="quick_ico" src="video_ic.png"></img></p>
-<p class="quick_txt1_small" onclick="photo_scroll()" id="qc_photo"><img class="quick_ico" src="photo_ic.png"></img></p>
-<p class="quick_txt3_small" onclick="tiktok_scroll()" id="qc_tiktok" style="border-radius: 0px 0px 40px 40px;"><img class="quick_ico" src="tiktok_ic.png"></img></p>
-
-</div>
-
-<div class="arch_sel">
-	<select id="arch_sel">
-	<option selected value="e_ivettta">Загрузка...</option>
-	</select>
-  <p class="arch_p">список архивов</p>
-</div>
-
-
-<div class="main_gal">
-
-<div class="left_gal">
-<div class="sign_block">
-<p class="sign">Публичный МегаАрхив</p>
-</div>
-<p class="sign_bot">Первый и наиболее полный...</p>
-<p id="stats" class="stats"></p>
-	
-	
-<div class="quick_block"><p class="quick_switch">Быстрый переход</p>
-<div class="quick_blk">
-
-<p class="quick_txt2" onclick="video_scroll()" id="qc_video" style="border-radius: 40px 0px 0px 40px;">Видео</p>
-<p class="quick_txt1" onclick="photo_scroll()" id="qc_photo">Фото</p>
-<p class="quick_txt3" onclick="tiktok_scroll()" id="qc_tiktok" style="border-radius: 0px 40px 40px 0px;">ТикТок</p>
-</div>
-</div>
-
-</div>
-
-<div class="prlx_main">
-
-
-    <img class="parallax" id="paral_photo" src=""></img>
-
-</div>
-
-</div>
-
-<div id="media_block" class="media_block">
-<div class="container" id="loading_gif" style=""><img style="max-height: 100px;" src="/loading.gif"></div>
-</div>
-<script src="/js.cookie.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script src="/snowstorm.js"></script>
-<script src="/client.js"></script>
-</body>
-
+      <div class="main_gal">
+         <div class="left_gal">
+            <div class="sign_block">
+               <p class="sign">Публичный МегаАрхив</p>
+            </div>
+            <p class="sign_bot">Первый и наиболее полный...</p>
+            <p id="stats" class="stats"></p>
+         </div>
+         <div class="prlx_main">
+            <img class="parallax rotate" id="paral_photo" src="sync.png"></img>
+         </div>
+		 <div class="gal_bg">
+			<video class="gal_bg_video" autoplay loop muted src="gal_grad.mp4"/>
+		 </div>
+      </div>
+      <div id="media_block" class="media_block">
+         <div class="container" id="loading_gif"><img style="max-height: 100px;" src="/loading.gif"></div>
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+      <script src="/js.cookie.js"></script>
+      <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+      <script src="/snowstorm.js"></script>
+      <script src="/client.js"></script>
+   </body>
 </html>
