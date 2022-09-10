@@ -1677,7 +1677,7 @@ span {}
 
   .post_desc {
     font-size: 1rem;
-    max-height: 300px;
+    max-height: 10rem;
   }
 
   .slick_slide {
