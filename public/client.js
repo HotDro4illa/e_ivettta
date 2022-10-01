@@ -52,12 +52,10 @@ function turn_eff(state) {
 
 if (Cookies.get("effects") == "false") {
   turn_eff("off");
-  snowStorm.freeze();
 } else {
   if (window.innerHeight < window.innerWidth) {
     parallax_img();
   }
-  snowStorm.start();
 }
 
 function paral(e) {
@@ -440,11 +438,9 @@ async function change_effect() {
   if (Cookies.get("effects") == "true") {
     turn_eff("off");
     Cookies.set("effects", "false", { expires: 9999 });
-    snowStorm.freeze();
   } else {
     turn_eff("on");
     Cookies.set("effects", "true", { expires: 9999 });
-    snowStorm.start();
   }
 }
 
