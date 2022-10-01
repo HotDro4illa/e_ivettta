@@ -89,6 +89,8 @@ function paral(e) {
   );
 }
 
+
+
 function parallax_img() {
   var elementX = 0,
     elementY = 0,
@@ -96,7 +98,7 @@ function parallax_img() {
     elementH = 0,
     mouseX = 0,
     mouseY = 0;
-  $(document).mousemove(paral);
+	document.getElementsByClassName('main_gal')[0].addEventListener("mousemove",paral);
 }
 
 function fadein() {
@@ -120,7 +122,6 @@ function videoplay(e) {
 function make_feed(acc_name) {
   let ind = 0;
   let vids = 0;
-  document.getElementById("paral_photo").classList.remove("rotate");
   document
     .getElementById("paral_photo")
     .setAttribute(
