@@ -393,7 +393,7 @@ function tiktok_scroll() {
 }
 function get_desc(e) {
   e.preventDefault();
-  elem = e.path[1].children[0];
+  elem = e.target;
   if (elem.tagName == "VIDEO") {
     document
       .querySelector("body")
